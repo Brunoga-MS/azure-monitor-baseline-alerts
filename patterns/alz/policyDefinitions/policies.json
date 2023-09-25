@@ -5,14 +5,13 @@
     "_generator": {
       "name": "bicep",
       "version": "0.19.5.34762",
-      "templateHash": "14194738762871678875"
+      "templateHash": "6934176260858932188"
     }
   },
   "parameters": {
     "topLevelManagementGroupPrefix": {
       "type": "string",
       "defaultValue": "alz",
-      "maxLength": 10,
       "metadata": {
         "description": "Provide a prefix (max 10 characters, unique at tenant-scope) for the Management Group hierarchy and other resources created as part of an Azure landing zone. DEFAULT VALUE = \"alz\"",
         "message": "The JSON version of this file is programatically generated from Bicep. PLEASE DO NOT UPDATE MANUALLY!!"
@@ -20,9 +19,9 @@
     },
     "location": {
       "type": "string",
-      "defaultValue": "[deployment().location]",
+      "defaultValue": "northeurope",
       "metadata": {
-        "description": "Optionally set the deployment location for policies with Deploy If Not Exists effect. DEFAULT VALUE = \"deployment().location\""
+        "description": "Optionally set the deployment location for policies with Deploy If Not Exists effect. DEFAULT VALUE = \"northeurope\""
       }
     },
     "scope": {
