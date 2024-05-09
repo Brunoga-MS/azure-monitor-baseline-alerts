@@ -298,6 +298,18 @@
                                         "equals": "Unavailable"
                                       }
                                     ]
+                                  },
+                                  {
+                                    "anyOf": [
+                                      {
+                                        "field": "properties.previousHealthStatus",
+                                        "equals": "Available"
+                                      },
+                                      {
+                                        "field": "properties.previousHealthStatus",
+                                        "equals": "Unknown"
+                                      }
+                                    ]
                                   }
                                 ]
                               },
@@ -353,6 +365,18 @@
                                       {
                                         "field": "properties.currentHealthStatus",
                                         "equals": "Unavailable"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "anyOf": [
+                                      {
+                                        "field": "properties.previousHealthStatus",
+                                        "equals": "Available"
+                                      },
+                                      {
+                                        "field": "properties.previousHealthStatus",
+                                        "equals": "Unknown"
                                       }
                                     ]
                                   }
