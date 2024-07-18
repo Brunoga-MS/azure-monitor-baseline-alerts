@@ -280,7 +280,7 @@
               },
               {
                 "field": "Microsoft.Insights/scheduledQueryRules/criteria.allOf[*].query",
-                "equals": "[[format('let policyThreshold = \"{0}\"; arg(\"\").resources | where type == \"microsoft.hybridcompute/machines\" | where tostring(properties.status) == \"Disconnected\" | extend liveThresholdString = iif(tags contains \"_amba-override-HybridVMDisconnected-threshold_\", tostring(tags.[\"_amba-override-HybridVMDisconnected-threshold_\"]), policyThreshold) | extend liveThresholdTS = totimespan(liveThresholdString) | extend lastContactedDate = todatetime(properties.lastStatusChange) | where lastContactedDate <= ago(liveThresholdTS) | extend status = tostring(properties.status) | project id, Computer=name, status, lastContactedDate', parameters('threshold'))]"
+                "equals": "[[format('let policyThresholdString = \"{0}\"; arg(\"\").resources | where type == \"microsoft.hybridcompute/machines\" | where tostring(properties.status) == \"Disconnected\" | extend appliedThresholdString = iif(tags contains \"_amba-override-HybridVMDisconnected-threshold_\", tostring(tags.[\"_amba-override-HybridVMDisconnected-threshold_\"]), policyThresholdString) | extend appliedThresholdTS = totimespan(appliedThresholdString) | extend lastContactedDate = todatetime(properties.lastStatusChange) | where lastContactedDate <= ago(appliedThresholdTS) | extend status = tostring(properties.status) | project id, Computer=name, status, lastContactedDate, appliedThresholdString', parameters('threshold'))]"
               }
             ]
           },
@@ -416,7 +416,7 @@
                               "criteria": {
                                 "allOf": [
                                   {
-                                    "query": "[[format('let policyThreshold = \"{0}\"; arg(\"\").resources | where type == \"microsoft.hybridcompute/machines\" | where tostring(properties.status) == \"Disconnected\" | extend liveThresholdString = iif(tags contains \"_amba-override-HybridVMDisconnected-threshold_\", tostring(tags.[\"_amba-override-HybridVMDisconnected-threshold_\"]), policyThreshold) | extend liveThresholdTS = totimespan(liveThresholdString) | extend lastContactedDate = todatetime(properties.lastStatusChange) | where lastContactedDate <= ago(liveThresholdTS) | extend status = tostring(properties.status) | project id, Computer=name, status, lastContactedDate', parameters('threshold'))]",
+                                    "query": "[[format('let policyThresholdString = \"{0}\"; arg(\"\").resources | where type == \"microsoft.hybridcompute/machines\" | where tostring(properties.status) == \"Disconnected\" | extend appliedThresholdString = iif(tags contains \"_amba-override-HybridVMDisconnected-threshold_\", tostring(tags.[\"_amba-override-HybridVMDisconnected-threshold_\"]), policyThresholdString) | extend appliedThresholdTS = totimespan(appliedThresholdString) | extend lastContactedDate = todatetime(properties.lastStatusChange) | where lastContactedDate <= ago(appliedThresholdTS) | extend status = tostring(properties.status) | project id, Computer=name, status, lastContactedDate, appliedThresholdString', parameters('threshold'))]",
                                     "resourceIdColumn": "id",
                                     "threshold": 0,
                                     "operator": "[[parameters('operator')]",
