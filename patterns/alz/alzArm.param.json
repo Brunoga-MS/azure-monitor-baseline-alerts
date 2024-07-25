@@ -1033,46 +1033,46 @@
         "activityKVDeletePolicyEffect": {
           "value": "deployIfNotExists"
         },
-        "ManagedHSMsAvailabilityAlertSeverity": {
+        "HSMsAvailabilityAlertSeverity": {
           "value": "1"
         },
-        "ManagedHSMsAvailabilityWindowSize": {
+        "HSMsAvailabilityWindowSize": {
           "value": "PT1M"
         },
-        "ManagedHSMsAvailabilityEvaluationFrequency": {
+        "HSMsAvailabilityEvaluationFrequency": {
           "value": "PT1M"
         },
-        "ManagedHSMsAvailabilityPolicyEffect": {
+        "HSMsAvailabilityPolicyEffect": {
           "value": "disabled"
         },
-        "ManagedHSMsAvailabilityAlertState": {
+        "HSMsAvailabilityAlertState": {
           "value": "true"
         },
-        "ManagedHSMsAvailabilityThreshold": {
+        "HSMsAvailabilityThreshold": {
           "value": "20"
         },
-        "ManagedHSMsLatencyAvailabilityAlertSeverity": {
+        "HSMsLatencyAvailabilityAlertSeverity": {
           "value": "3"
         },
-        "ManagedHSMsLatencyAvailabilityWindowSize": {
+        "HSMsLatencyAvailabilityWindowSize": {
           "value": "PT5M"
         },
-        "ManagedHSMsLatencyAvailabilityEvaluationFrequency": {
+        "HSMsLatencyAvailabilityEvaluationFrequency": {
           "value": "PT5M"
         },
-        "ManagedHSMsLatencyAvailabilityPolicyEffect": {
+        "HSMsLatencyAvailabilityPolicyEffect": {
           "value": "disabled"
         },
-        "ManagedHSMsLatencyAvailabilityAlertState": {
+        "HSMsLatencyAvailabilityAlertState": {
           "value": "true"
         },
-        "ManagedHSMsLatencyAvailabilityThreshold": {
+        "HSMsLatencyAvailabilityThreshold": {
           "value": "1000"
         },
-        "activityManagedHSMsDeleteAlertState": {
+        "activityHSMsDeleteAlertState": {
           "value": "true"
         },
-        "activityManagedHSMsDeletePolicyEffect": {
+        "activityHSMsDeletePolicyEffect": {
           "value": "deployIfNotExists"
         }
       }
@@ -1731,46 +1731,46 @@
         "activityKVDeletePolicyEffect": {
           "value": "deployIfNotExists"
         },
-        "ManagedHSMsAvailabilityAlertSeverity": {
+        "HSMsAvailabilityAlertSeverity": {
           "value": "1"
         },
-        "ManagedHSMsAvailabilityWindowSize": {
+        "HSMsAvailabilityWindowSize": {
           "value": "PT1M"
         },
-        "ManagedHSMsAvailabilityEvaluationFrequency": {
+        "HSMsAvailabilityEvaluationFrequency": {
           "value": "PT1M"
         },
-        "ManagedHSMsAvailabilityPolicyEffect": {
+        "HSMsAvailabilityPolicyEffect": {
           "value": "disabled"
         },
-        "ManagedHSMsAvailabilityAlertState": {
+        "HSMsAvailabilityAlertState": {
           "value": "true"
         },
-        "ManagedHSMsAvailabilityThreshold": {
+        "HSMsAvailabilityThreshold": {
           "value": "20"
         },
-        "ManagedHSMsLatencyAvailabilityAlertSeverity": {
+        "HSMsLatencyAvailabilityAlertSeverity": {
           "value": "3"
         },
-        "ManagedHSMsLatencyAvailabilityWindowSize": {
+        "HSMsLatencyAvailabilityWindowSize": {
           "value": "PT5M"
         },
-        "ManagedHSMsLatencyAvailabilityEvaluationFrequency": {
+        "HSMsLatencyAvailabilityEvaluationFrequency": {
           "value": "PT5M"
         },
-        "ManagedHSMsLatencyAvailabilityPolicyEffect": {
+        "HSMsLatencyAvailabilityPolicyEffect": {
           "value": "disabled"
         },
-        "ManagedHSMsLatencyAvailabilityAlertState": {
+        "HSMsLatencyAvailabilityAlertState": {
           "value": "true"
         },
-        "ManagedHSMsLatencyAvailabilityThreshold": {
+        "HSMsLatencyAvailabilityThreshold": {
           "value": "1000"
         },
-        "activityManagedHSMsDeleteAlertState": {
+        "activityHSMsDeleteAlertState": {
           "value": "true"
         },
-        "activityManagedHSMsDeletePolicyEffect": {
+        "activityHSMsDeletePolicyEffect": {
           "value": "deployIfNotExists"
         }
       }
