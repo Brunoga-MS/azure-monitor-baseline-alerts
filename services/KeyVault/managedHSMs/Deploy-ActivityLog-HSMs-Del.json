@@ -9,7 +9,7 @@
     "description": "Policy to Deploy Activity Log Managed HSMs Delete Alert",
     "metadata": {
       "version": "1.0.1",
-      "category": "Managed HSMs",
+      "category": "Key Vault",
       "source": "https://github.com/Azure/azure-monitor-baseline-alerts/",
       "alzCloudEnvironments": [
         "AzureCloud"
@@ -55,6 +55,18 @@
           "description": "Location of the Resource group the alert is placed in"
         },
         "defaultValue": "centralus"
+      },
+      "effect": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Effect",
+          "description": "Effect of the policy"
+        },
+        "allowedValues": [
+          "deployIfNotExists",
+          "disabled"
+        ],
+        "defaultValue": "disabled"
       },
       "MonitorDisableTagName": {
         "type": "String",
