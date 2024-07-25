@@ -1,7 +1,7 @@
 {
   "type": "Microsoft.Authorization/policyDefinitions",
   "apiVersion": "2021-06-01",
-  "name": "Deploy_activitylog_ManagedHSMs_Delete",
+  "name": "Deploy_ActivityLog_ManagedHSMs_Delete",
   "properties": {
     "policyType": "Custom",
     "mode": "All",
@@ -104,7 +104,7 @@
         ]
       },
       "then": {
-        "effect": "deployIfNotExists",
+        "effect": "[[parameters('effect')]",
         "details": {
           "roleDefinitionIds": [
             "/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"
@@ -145,7 +145,7 @@
                           },
                           {
                             "field": "microsoft.insights/activityLogAlerts/condition.allOf[*].equals",
-                              "equals": "Microsoft.KeyVault/ManagedHSMs/delete"
+                            "equals": "Microsoft.KeyVault/ManagedHSMs/delete"
                           }
                         ]
                       }
@@ -231,7 +231,7 @@
                                   },
                                   {
                                     "field": "operationName",
-                                      "equals": "Microsoft.KeyVault/managedHSMs/delete"
+                                    "equals": "Microsoft.KeyVault/managedHSMs/delete"
                                   },
                                   {
                                     "field": "status",
