@@ -1,7 +1,7 @@
 {
   "type": "Microsoft.Authorization/policyDefinitions",
   "apiVersion": "2021-06-01",
-  "name": "Deploy_activitylog_KeyVault_Delete",
+  "name": "Deploy_ActivityLog_KeyVault_Delete",
   "properties": {
     "policyType": "Custom",
     "mode": "All",
@@ -71,7 +71,7 @@
         "type": "String",
         "metadata": {
           "displayName": "ALZ Monitoring disabled tag name",
-          "description": "Tag name to disable monitoring. Set to true if monitoring should be disabled"
+          "description": "Tag used name to disable monitoring. Set to true if monitoring should be disabled"
         },
         "defaultValue": "MonitorDisable"
       },
