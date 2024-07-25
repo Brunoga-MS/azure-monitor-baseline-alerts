@@ -1,15 +1,15 @@
 {
   "type": "Microsoft.Authorization/policyDefinitions",
   "apiVersion": "2021-06-01",
-  "name": "Deploy_ManagedHSM_Availability_Alert",
+  "name": "Deploy_ManagedHSMs_Availability_Alert",
   "properties": {
     "policyType": "Custom",
     "mode": "All",
-    "displayName": "Deploy ManagedHSM Availability Alert",
-    "description": "Policy to audit/deploy ManagedHSM Availability Alert",
+    "displayName": "Deploy Managed HSMs Availability Alert",
+    "description": "Policy to audit/deploy Managed HSMs Availability Alert",
     "metadata": {
       "version": "1.1.0",
-      "category": "Managed HSM",
+      "category": "Managed HSMs",
       "source": "https://github.com/Azure/azure-monitor-baseline-alerts/",
       "alzCloudEnvironments": [
         "AzureCloud"

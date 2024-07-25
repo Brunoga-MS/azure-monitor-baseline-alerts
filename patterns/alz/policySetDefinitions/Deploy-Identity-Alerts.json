@@ -698,7 +698,7 @@
       },
       {
         "policyDefinitionReferenceId": "ALZ_ManagedHSMsAvailability",
-        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/contoso/providers/Microsoft.Authorization/policyDefinitions/Deploy_ManagedHSM_Availability_Alert",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/contoso/providers/Microsoft.Authorization/policyDefinitions/Deploy_ManagedHSMs_Availability_Alert",
         "parameters": {
           "severity": {
             "value": "[[parameters('HSMsAvailabilityAlertSeverity')]"
@@ -728,7 +728,7 @@
       },
       {
         "policyDefinitionReferenceId": "ALZ_ManagedHSMsLatencyAvailability",
-        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/contoso/providers/Microsoft.Authorization/policyDefinitions/Deploy_ManagedHSM_Latency_Alert",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/contoso/providers/Microsoft.Authorization/policyDefinitions/Deploy_ManagedHSMs_Latency_Alert",
         "parameters": {
           "severity": {
             "value": "[[parameters('HSMsLatencyAvailabilityAlertSeverity')]"
@@ -758,7 +758,7 @@
       },
       {
         "policyDefinitionReferenceId": "ALZ_activityManagedHSMsDelete",
-        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/contoso/providers/Microsoft.Authorization/policyDefinitions/Deploy_activitylog_ManagedHSM_Delete",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/contoso/providers/Microsoft.Authorization/policyDefinitions/Deploy_ActivityLog_ManagedHSMs_Delete",
         "parameters": {
           "enabled": {
             "value": "[[parameters('activityHSMsDeleteAlertState')]"
