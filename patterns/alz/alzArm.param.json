@@ -1032,6 +1032,48 @@
         },
         "activityKVDeletePolicyEffect": {
           "value": "deployIfNotExists"
+        },
+        "ManagedHSMsAvailabilityAlertSeverity": {
+          "value": "1"
+        },
+        "ManagedHSMsAvailabilityWindowSize": {
+          "value": "PT1M"
+        },
+        "ManagedHSMsAvailabilityEvaluationFrequency": {
+          "value": "PT1M"
+        },
+        "ManagedHSMsAvailabilityPolicyEffect": {
+          "value": "disabled"
+        },
+        "ManagedHSMsAvailabilityAlertState": {
+          "value": "true"
+        },
+        "ManagedHSMsAvailabilityThreshold": {
+          "value": "20"
+        },
+        "ManagedHSMsLatencyAvailabilityAlertSeverity": {
+          "value": "3"
+        },
+        "ManagedHSMsLatencyAvailabilityWindowSize": {
+          "value": "PT5M"
+        },
+        "ManagedHSMsLatencyAvailabilityEvaluationFrequency": {
+          "value": "PT5M"
+        },
+        "ManagedHSMsLatencyAvailabilityPolicyEffect": {
+          "value": "disabled"
+        },
+        "ManagedHSMsLatencyAvailabilityAlertState": {
+          "value": "true"
+        },
+        "ManagedHSMsLatencyAvailabilityThreshold": {
+          "value": "1000"
+        },
+        "activityManagedHSMsDeleteAlertState": {
+          "value": "true"
+        },
+        "activityManagedHSMsDeletePolicyEffect": {
+          "value": "deployIfNotExists"
         }
       }
     },
@@ -1687,6 +1729,48 @@
           "value": "true"
         },
         "activityKVDeletePolicyEffect": {
+          "value": "deployIfNotExists"
+        },
+        "ManagedHSMsAvailabilityAlertSeverity": {
+          "value": "1"
+        },
+        "ManagedHSMsAvailabilityWindowSize": {
+          "value": "PT1M"
+        },
+        "ManagedHSMsAvailabilityEvaluationFrequency": {
+          "value": "PT1M"
+        },
+        "ManagedHSMsAvailabilityPolicyEffect": {
+          "value": "disabled"
+        },
+        "ManagedHSMsAvailabilityAlertState": {
+          "value": "true"
+        },
+        "ManagedHSMsAvailabilityThreshold": {
+          "value": "20"
+        },
+        "ManagedHSMsLatencyAvailabilityAlertSeverity": {
+          "value": "3"
+        },
+        "ManagedHSMsLatencyAvailabilityWindowSize": {
+          "value": "PT5M"
+        },
+        "ManagedHSMsLatencyAvailabilityEvaluationFrequency": {
+          "value": "PT5M"
+        },
+        "ManagedHSMsLatencyAvailabilityPolicyEffect": {
+          "value": "disabled"
+        },
+        "ManagedHSMsLatencyAvailabilityAlertState": {
+          "value": "true"
+        },
+        "ManagedHSMsLatencyAvailabilityThreshold": {
+          "value": "1000"
+        },
+        "activityManagedHSMsDeleteAlertState": {
+          "value": "true"
+        },
+        "activityManagedHSMsDeletePolicyEffect": {
           "value": "deployIfNotExists"
         }
       }
