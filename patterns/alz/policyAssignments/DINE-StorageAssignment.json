@@ -39,7 +39,7 @@
             "Default": "must",
             "DoNotEnforce": "should"
         },
-        "rbacContributor": "b24988ac-6180-42a0-ab88-20f7382dd24c",
+        "rbacContributor": "b6d86d4e-6f05-4c75-b2e2-423d75d21ee1",
         "roleAssignmentNames": {
             "deployAMBAStorage": "[guid(concat(parameters('topLevelManagementGroupPrefix'), variables('policyAssignmentNames').ambaStorage))]"
         }
