@@ -956,7 +956,7 @@
         "enterpriseScaleCompanyPrefix": "[steps('Configuration').enterpriseScaleCompanyPrefix]",
         "platformManagementGroup": "[steps('Configuration').platformManagementGroup]",
         "IdentityManagementGroup": "[if(equals(steps('Configuration').enableAMBAIdentity,'No'), 'contoso-identity', steps('Configuration').IdentityManagementGroup)]",
-        "managementManagementGroup": "[if(equals(steps('Configuration').enableAMBAManagement, 'No'), 'contoso-management', steps('Configuration').managementManagementGroup)]",
+        "managementManagementGroup": "[if(empty(steps('Configuration').managementManagementGroup), 'contoso-management', steps('Configuration').managementManagementGroup)]",
         "connectivityManagementGroup": "[if(equals(steps('Configuration').enableAMBAConnectivity, 'No'), 'contoso-connectivity', steps('Configuration').connectivityManagementGroup)]",
         "LandingZoneManagementGroup": "[if(empty(steps('Configuration').LandingZoneManagementGroup), 'contoso-landingzones', steps('Configuration').LandingZoneManagementGroup)]",
         "BYOActionGroup": "[steps('Notification').BYOActionGroup]",
