@@ -264,7 +264,7 @@
               "defaultDescription": "Enterprise Scale Company Management Group",
               "toolTip": "Management group where you wish to deploy the policies and the initiatives. This is usually the so called “pseudo root management group”, this would be the so called “Intermediate Root Management Group” (directly beneath the “Tenant Root Group”).",
               "constraints": {
-                "allowedValues": "[map(steps('Configuration').ManagementGroupAPI.value, (item) => parse(concat('{\"label\":\"', item.name, '\",\"value\":\"', item.name, '\"}')))]",
+                "allowedValues": "[filter(map(steps('Configuration').ManagementGroupAPI.value, (item) => parse(concat('{\"label\":\"', item.properties.displayName, '\",\"value\":\"', item.name, '\"}'))), (item) => equals(item.label, steps('basics').resourceScope.managementGroup.displayName))]",
                 "required": true
               },
               "visible": true
