@@ -4,6 +4,14 @@ geekdocCollapseSection: true
 weight: 70
 ---
 
+### In this page
+
+> [Overview](../Threshold-Override#overview) </br>
+> [How this feature works](../Threshold-Override#how-this-feature-works) </br>
+> [Metrics alerts](../Threshold-Override#metrics-alerts) </br>
+> [Log-search alerts](../Threshold-Override#log-search-alerts) </br>
+> [Which tag do customers need to create](../Threshold-Override#which-tag-do-customers-need-to-create) </br>
+
 ## Overview
 
 The ***Alert Threshold Override*** feature, introduced in the [2024-09-05 release](../../Overview/Whats-New#2024-09-05), enables both Greenfield and Brownfield customers to customize alert thresholds for specific resources during or after the deployment of AMBA-ALZ. This feature allows the use of a tag with a specific name and value to override the default alert threshold for designated resources. The new threshold value will apply exclusively to the tagged resources, replacing the global threshold specified in the parameter file.
@@ -26,7 +34,7 @@ Considering the nature of log-search alerts, where resource information is retri
 
 ![Log-search Alerts - Override threshold at work](../../media/LogsearchAlerts-OverrideThresholdAtWork.png)
 
-## Which tag does customers need to create
+## Which tag do customers need to create
 
 {{< hint type=Info >}}
 For a comprehensive list of resource type friendly names, resource provider namespaces, and recommended abbreviations, refer to [Abbreviation recommendations for Azure resources](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/resource-abbreviations).
@@ -40,16 +48,26 @@ In scenarios where the same metric is used multiple times for the same resource,
 
 ```***_amba-<metricName/counterName>-<differentiator>-threshold-Override_***```
 
-The following table provides a mapping between alert names and the corresponding tag values that need to be created:
+The following tables provide a mapping between alert names and the corresponding tag name that need to be created. They contain information about the value type (number, string) and examples of the format:
+
+{{< hint type=Warning >}}
+The sample values in the tables ***are not meant*** to serve as recommendations for the override value!
+{{< /hint >}}
 
 </br>
 
 ### Log-search alerts table
 
-{{% include "Log_Search_Alert_Table.md" %}}
+{{% include "Log_Search_Alerts_Table.md" %}}
 
 </br>
 
 ### Metric alerts table
 
-{{% include "Metrics_Alert_Table.md" %}}
+{{% include "Metrics_Alerts_Table.md" %}}
+
+</br>
+
+### Activity Log alerts table
+
+{{% include "ActivityLog_Alerts_Table.md" %}}

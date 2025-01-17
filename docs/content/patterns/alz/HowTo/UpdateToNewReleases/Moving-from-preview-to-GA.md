@@ -3,6 +3,12 @@ title: Transitioning from Preview to General Availability (GA)
 geekdocCollapseSection: true
 weight: 101
 ---
+
+### In this page
+
+> [Cleanup Script Execution](../Moving-from-preview-to-GA#cleanup-script-execution) </br>
+> [Next Steps](../Moving-from-preview-to-GA#next-steps) </br>
+
 To transition from the preview version to the General Availability (GA) version of the ALZ Monitor solution, you must remove all previously deployed resources. Follow these instructions to execute a PowerShell script that deletes the following resources:
 
 - Metric Alerts
@@ -63,7 +69,7 @@ Follow these steps to download the cleanup script file. Alternatively, you can c
 ## Next Steps
 
 - For customizing policy assignments, refer to [Customize Policy Assignment](../../deploy/Customize-Policy-Assignment).
-- For deplyment using Azure Portal, refer to [Deploy via the Azure Portal (Preview)](../../deploy/Deploy-via-Azure-Portal-UI)  (recommended method)
+- For deplyment using Azure Portal, refer to [Deploy via the Azure Portal Accelerator](../../deploy/Deploy-via-Azure-Portal-UI)  (recommended method)
 - For deployment using GitHub Actions, refer to [Deploy with GitHub Actions](../../deploy/Deploy-with-GitHub-Actions).
 - For deployment using Azure DevOps Pipelines, refer to [Deploy with Azure Pipelines](../../deploy/Deploy-with-Azure-Pipelines).
 - For deployment using Azure CLI, refer to [Deploy with Azure CLI](../../deploy/Deploy-with-Azure-CLI).
