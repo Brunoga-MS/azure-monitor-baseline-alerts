@@ -10,7 +10,7 @@
       }
     },
     "description": {
-      "defaultValue": "Policy to Audit/AVD-HostPool",
+      "defaultValue": "Policy to Audit/AVD-HostPool ",
       "type": "String",
       "metadata": {
         "description": "Description of policy"

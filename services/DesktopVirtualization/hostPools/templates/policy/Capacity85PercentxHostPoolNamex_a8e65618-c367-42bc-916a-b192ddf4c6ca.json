@@ -21,7 +21,7 @@
         "type": "String",
         "metadata": {
           "displayName": "Resource Group Name",
-          "description": "Resource group the alert is placed in"
+          "description": "Resource group the alert is placed in "
         },
         "defaultValue": "rg-amba-monitoring-001"
       },
