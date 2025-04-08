@@ -136,7 +136,7 @@ function Get-PolicyType {
 
             # Getting parent initiative for unassigned individual policies
             If ($initiatives) {
-                $parentInitiative = $initiatives.value | Where-Object { ($_.properties.policyType -eq 'Custom') -and ($_.properties.metadata -like '*_deployed_by_amba*') } | Where-Object { $_.properties.policyDefinitions.policyDefinitionReferenceId -eq $policyname }
+                $parentInitiative = $initiatives.value | Where-Object { ($_.properties.policyType -eq 'Custom') -and (($_.properties.metadata -like '*_deployed_by_amba*') -or ($_.properties.metadata -like '*_deployed_by_amba_alz*')) } | Where-Object { $_.properties.policyDefinitions.policyDefinitionReferenceId -eq $policyname }
 
                 # Getting the assignment of the parent initiative
                 If ($parentInitiative) {

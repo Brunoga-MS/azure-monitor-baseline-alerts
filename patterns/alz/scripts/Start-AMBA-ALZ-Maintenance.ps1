@@ -153,9 +153,9 @@ Function Iterate-ManagementGroups($mg) {
 #region Get functions
 Function Get-ALZ-Alerts {
     # get alert resources to delete
-    $query = "Resources | where type in~ ('Microsoft.Insights/metricAlerts','Microsoft.Insights/activityLogAlerts', 'Microsoft.Insights/scheduledQueryRules') and tags['_deployed_by_amba'] =~ 'True' | project id"
+    $query = "resources | where type in~ ('Microsoft.Insights/metricAlerts','Microsoft.Insights/activityLogAlerts', 'Microsoft.Insights/scheduledQueryRules') | where tags['_deployed_by_amba'] =~ 'True' or tags['_deployed_by_amba_alz'] =~ 'True' | project id"
     $alertResourceIds = Search-AzGraphRecursive -Query $query -ManagementGroupNames $managementGroups.mgName | Select-Object -ExpandProperty Id | Sort-Object | Get-Unique
-    Write-Host "- Found '$($alertResourceIds.Count)' metric, activity log and log alerts with tag '_deployed_by_amba=True' to be deleted." -ForegroundColor Cyan
+    Write-Host "- Found '$($alertResourceIds.Count)' metric, activity log and log alerts with tag '_deployed_by_amba=True' or '_deployed_by_amba_alz=True' or '_deployed_by_amba_alz=True' to be deleted." -ForegroundColor Cyan
 
     # Returning items
     $alertResourceIds
@@ -164,23 +164,14 @@ Function Get-ALZ-Alerts {
 Function Get-ALZ-OrphanedAlerts {
 
     # get AMBA-ALZ alert resources
-    $query = "Resources | where type in~ ('Microsoft.Insights/metricAlerts','Microsoft.Insights/activityLogAlerts', 'Microsoft.Insights/scheduledQueryRules') and tags['_deployed_by_amba'] =~ 'True' | project id, scope = tostring(properties.scopes)"
+    $query = "resources | where type in~ ('Microsoft.Insights/metricAlerts','Microsoft.Insights/activityLogAlerts', 'Microsoft.Insights/scheduledQueryRules') | where tags['_deployed_by_amba'] =~ 'True' or tags['_deployed_by_amba_alz'] =~ 'True' | project id, scope = tostring(properties.scopes)"
     $alertResources = Search-AzGraphRecursive -Query $query -ManagementGroupNames $managementGroups.mgName
 
     # get alerts without scoped resource existent
     If ($alertResources.count -gt 0) {
         $tempArrayList = [System.Collections.ArrayList]::new()
         $orphanedAlerts = [System.Collections.ArrayList]::Synchronized($tempArrayList)
-        <#ForEach ($alert in $alertResources) {
-            $scope = $($alert.scope.replace('"]', '')).replace('["', '')
-            $query = "Resources | where id =~ '$scope' | project id"
-            $resourceId = Search-AzGraphRecursive -Query $query -ManagementGroupNames $managementGroups.mgName | Select-Object -ExpandProperty Id
-
-            If (-NOT $resourceId) {
-                $orphanedAlerts.add($alert.id)
-            }
-        }#>
-
+        
         $alertResources | ForEach-Object -Parallel {
             $arr = $using:orphanedAlerts
             $scope = $($_.scope.replace('"]', '')).replace('["', '')
@@ -196,7 +187,7 @@ Function Get-ALZ-OrphanedAlerts {
         }
     }
 
-    Write-Host "- Found '$($orphanedAlerts.Count)' orphaned metric, activity log and log alerts with tag '_deployed_by_amba=True' to be deleted." -ForegroundColor Cyan
+    Write-Host "- Found '$($orphanedAlerts.Count)' orphaned metric, activity log and log alerts with tag '_deployed_by_amba=True' or '_deployed_by_amba_alz=True' or '_deployed_by_amba_alz=True' to be deleted." -ForegroundColor Cyan
 
     # Returning items
     $orphanedAlerts
@@ -204,9 +195,9 @@ Function Get-ALZ-OrphanedAlerts {
 
 Function Get-ALZ-ResourceGroups {
     # get resource group to delete
-    $query = "ResourceContainers | where type =~ 'microsoft.resources/subscriptions/resourcegroups' and tags['_deployed_by_amba'] =~ 'True' | project id"
+    $query = "resourcecontainers | where type =~ 'microsoft.resources/subscriptions/resourcegroups' | where tags['_deployed_by_amba'] =~ 'True' or tags['_deployed_by_amba_alz'] =~ 'True' | project id"
     $resourceGroupIds = Search-AzGraphRecursive -Query $query -ManagementGroupNames $managementGroups.mgName | Select-Object -ExpandProperty Id | Sort-Object | Get-Unique
-    Write-Host "- Found '$($resourceGroupIds.Count)' resource groups with tag '_deployed_by_amba=True' to be deleted." -ForegroundColor Cyan
+    Write-Host "- Found '$($resourceGroupIds.Count)' resource groups with tag '_deployed_by_amba=True' or '_deployed_by_amba_alz=True' or '_deployed_by_amba_alz=True' to be deleted." -ForegroundColor Cyan
 
     # Returning items
     $resourceGroupIds
@@ -214,7 +205,7 @@ Function Get-ALZ-ResourceGroups {
 
 Function Get-ALZ-PolicyAssignments {
     # get policy assignments to delete
-    $query = "policyresources | where type =~ 'microsoft.authorization/policyAssignments' | project name,metadata=parse_json(properties.metadata),type,identity,id | where metadata._deployed_by_amba =~ 'true'"
+    $query = "policyresources | where type =~ 'microsoft.authorization/policyAssignments' | project name, metadata=parse_json(properties.metadata), type, identity, id | where (metadata._deployed_by_amba =~ 'true')  or (metadata._deployed_by_amba_alz =~ 'true')"
     $policyAssignmentIds = Search-AzGraphRecursive -Query $query -ManagementGroupNames $managementGroups.mgName | Select-Object -ExpandProperty Id | Sort-Object | Get-Unique
     Write-Host "- Found '$($policyAssignmentIds.Count)' policy assignments with metadata '_deployed_by_amba=True' to be deleted." -ForegroundColor Cyan
 
@@ -224,7 +215,7 @@ Function Get-ALZ-PolicyAssignments {
 
 Function Get-ALZ-PolicySetDefinitions {
     # get policy set definitions to delete
-    $query = "policyresources | where type =~ 'microsoft.authorization/policysetdefinitions' | project name,metadata=parse_json(properties.metadata),type,id | where metadata._deployed_by_amba =~ 'true' | project id"
+    $query = "policyresources | where type =~ 'microsoft.authorization/policysetdefinitions' | project name, metadata=parse_json(properties.metadata), type, id | where (metadata._deployed_by_amba =~ 'true') or (metadata._deployed_by_amba_alz =~ 'true') | project id"
     $policySetDefinitionIds = Search-AzGraphRecursive -Query $query -ManagementGroupNames $managementGroups.mgName | Select-Object -ExpandProperty Id | Sort-Object | Get-Unique
     Write-Host "- Found '$($policySetDefinitionIds.Count)' policy set definitions with metadata '_deployed_by_amba=True' to be deleted." -ForegroundColor Cyan
 
@@ -234,7 +225,7 @@ Function Get-ALZ-PolicySetDefinitions {
 
 Function Get-ALZ-PolicyDefinitions {
     # get policy definitions to delete
-    $query = "policyresources | where type =~ 'microsoft.authorization/policyDefinitions' | project name,metadata=parse_json(properties.metadata),type,id | where metadata._deployed_by_amba =~ 'true' | project id"
+    $query = "policyresources | where type =~ 'microsoft.authorization/policyDefinitions' | project name, metadata=parse_json(properties.metadata), type, id | where (metadata._deployed_by_amba =~ 'true') or (metadata._deployed_by_amba_alz =~ 'true') | project id"
     $policyDefinitionIds = Search-AzGraphRecursive -Query $query -ManagementGroupNames $managementGroups.mgName | Select-Object -ExpandProperty Id | Sort-Object | Get-Unique
     Write-Host "- Found '$($policyDefinitionIds.Count)' policy definitions with metadata '_deployed_by_amba=True' to be deleted." -ForegroundColor Cyan
 
@@ -245,9 +236,9 @@ Function Get-ALZ-PolicyDefinitions {
 
 Function Get-ALZ-UserAssignedManagedIdentities {
     # get user assigned managed identities to delete
-    $query = "Resources | where type =~ 'Microsoft.ManagedIdentity/userAssignedIdentities' and tags['_deployed_by_amba'] =~ 'True' | project id, name, principalId = properties.principalId, tenantId, subscriptionId, resourceGroup"
+    $query = "resources | where type =~ 'Microsoft.ManagedIdentity/userAssignedIdentities' | where tags['_deployed_by_amba'] =~ 'True' or tags['_deployed_by_amba_alz'] =~ 'True' | project id, name, principalId = properties.principalId, tenantId, subscriptionId, resourceGroup"
     $UamiIds = Search-AzGraphRecursive -Query $query -ManagementGroupNames $managementGroups.mgName | Sort-Object -Property id | Get-Unique -AsString
-    Write-Host "- Found '$($UamiIds.Count)' user assigned managed identities with tag '_deployed_by_amba=True' to be deleted." -ForegroundColor Cyan
+    Write-Host "- Found '$($UamiIds.Count)' user assigned managed identities with tag '_deployed_by_amba=True' or '_deployed_by_amba_alz=True' or '_deployed_by_amba_alz=True' to be deleted." -ForegroundColor Cyan
 
     # Returning items
     $UamiIds
@@ -255,7 +246,7 @@ Function Get-ALZ-UserAssignedManagedIdentities {
 
 Function Get-ALZ-RoleAssignments {
     # get role assignments to delete
-    $query = "authorizationresources | where type =~ 'microsoft.authorization/roleassignments' and properties.description == '_deployed_by_amba' | project roleDefinitionId = properties.roleDefinitionId, objectId = properties.principalId, scope = properties.scope, id"
+    $query = "authorizationresources | where type =~ 'microsoft.authorization/roleassignments' | where properties.description == '_deployed_by_amba' or properties.description == '_deployed_by_amba_alz' | project roleDefinitionId = properties.roleDefinitionId, objectId = properties.principalId, scope = properties.scope, id"
     $roleAssignments = Search-AzGraphRecursive -Query $query -ManagementGroupNames $managementGroups.mgName | Sort-Object -Property id | Get-Unique -AsString
     Write-Host "- Found '$($roleAssignments.Count)' role assignments with description '_deployed_by_amba' to be deleted." -ForegroundColor Cyan
 
@@ -279,9 +270,9 @@ Function Get-ALZ-Deployments {
 Function Get-ALZ-AlertProcessingRules {
     # get alert processing rules to delete
     #$query = "resources | where type =~ 'Microsoft.AlertsManagement/actionRules' | where tags['_deployed_by_amba'] =~ 'True'| project id"
-    $query = "resources | where type =~ 'Microsoft.AlertsManagement/actionRules' | where name startswith 'apr-AMBA-' and properties.description startswith 'AMBA Notification Assets - ' and tags['_deployed_by_amba'] =~ 'True'| project id"
+    $query = "resources | where type =~ 'Microsoft.AlertsManagement/actionRules' | where name startswith 'apr-AMBA-' and properties.description startswith 'AMBA Notification Assets - ' | where tags['_deployed_by_amba'] =~ 'True'or tags['_deployed_by_amba_alz'] =~ 'True' | project id"
     $alertProcessingRuleIds = Search-AzGraphRecursive -Query $query -ManagementGroupNames $managementGroups.mgName | Select-Object -ExpandProperty Id | Sort-Object | Get-Unique
-    Write-Host "- Found '$($alertProcessingRuleIds.Count)' alert processing rule(s) with tag '_deployed_by_amba=True' to be deleted." -ForegroundColor Cyan
+    Write-Host "- Found '$($alertProcessingRuleIds.Count)' alert processing rule(s) with tag '_deployed_by_amba=True' or '_deployed_by_amba_alz=True' or '_deployed_by_amba_alz=True' to be deleted." -ForegroundColor Cyan
 
     # Returning items
     $alertProcessingRuleIds
@@ -289,9 +280,9 @@ Function Get-ALZ-AlertProcessingRules {
 
 Function Get-ALZ-ActionGroups {
     # get action groups to delete
-    $query = "resources | where type =~ 'Microsoft.Insights/actionGroups' | where tags['_deployed_by_amba'] =~ 'True' | project id"
+    $query = "resources | where type =~ 'Microsoft.Insights/actionGroups' | where properties.groupShortName endswith 'ActGrp' | where tags['_deployed_by_amba'] =~ 'True' or tags['_deployed_by_amba_alz'] =~ 'True' | project id"
     $actionGroupIds = Search-AzGraphRecursive -Query $query -ManagementGroupNames $managementGroups.mgName | Select-Object -ExpandProperty Id | Sort-Object | Get-Unique
-    Write-Host "- Found '$($actionGroupIds.Count)' action group(s) with tag '_deployed_by_amba=True' to be deleted." -ForegroundColor Cyan
+    Write-Host "- Found '$($actionGroupIds.Count)' action group(s) with tag '_deployed_by_amba=True' or '_deployed_by_amba_alz=True' or '_deployed_by_amba_alz=True' to be deleted." -ForegroundColor Cyan
 
     # Returning items
     $actionGroupIds
@@ -299,9 +290,9 @@ Function Get-ALZ-ActionGroups {
 
 Function Get-ALZ-OldAlertProcessingRules {
   # get alert processing rules to delete
-  $query = "resources | where type =~ 'Microsoft.AlertsManagement/actionRules' | where name == 'AMBA Alert Processing Rule' and properties.description == 'AMBA Alert Processing Rule for Subscription' and tags['_deployed_by_amba'] =~ 'True'| project id"
+  $query = "resources | where type =~ 'Microsoft.AlertsManagement/actionRules' | where name == 'AMBA Alert Processing Rule' and properties.description == 'AMBA Alert Processing Rule for Subscription' | where tags['_deployed_by_amba'] =~ 'True' or tags['_deployed_by_amba_alz'] =~ 'True' | project id"
   $oldAlertProcessingRuleIds = Search-AzGraphRecursive -Query $query -ManagementGroupNames $managementGroups.mgName | Select-Object -ExpandProperty Id | Sort-Object | Get-Unique
-  Write-Host "- Found '$($oldAlertProcessingRuleIds.Count)' alert processing rule(s) with description 'AMBA Alert Processing Rule for Subscription' and tag '_deployed_by_amba=True' to be deleted." -ForegroundColor Cyan
+  Write-Host "- Found '$($oldAlertProcessingRuleIds.Count)' alert processing rule(s) with description 'AMBA Alert Processing Rule for Subscription' and tag '_deployed_by_amba=True' or '_deployed_by_amba_alz=True' to be deleted." -ForegroundColor Cyan
 
   # Returning items
   $oldAlertProcessingRuleIds
@@ -309,9 +300,9 @@ Function Get-ALZ-OldAlertProcessingRules {
 
 Function Get-ALZ-OldActionGroups {
   # get action groups to delete
-  $query = "resources | where type =~ 'Microsoft.Insights/actionGroups' | where tags['_deployed_by_amba'] =~ 'True' | project id"
+  $query = "resources | where type =~ 'Microsoft.Insights/actionGroups' | where properties.groupShortName =~ 'AmbaActionGr' | where tags['_deployed_by_amba'] =~ 'True' or tags['_deployed_by_amba_alz'] =~ 'True' | project id"
   $oldActionGroupIds = Search-AzGraphRecursive -Query $query -ManagementGroupNames $managementGroups.mgName | Select-Object -ExpandProperty Id | Sort-Object | Get-Unique
-  Write-Host "- Found '$($oldActionGroupIds.Count)' action group(s) with name 'AmbaActionGr', short name 'AmbaActionGr' and tag '_deployed_by_amba=True' to be deleted." -ForegroundColor Cyan
+  Write-Host "- Found '$($oldActionGroupIds.Count)' action group(s) with name 'AmbaActionGr', short name 'AmbaActionGr' and tag '_deployed_by_amba=True' or '_deployed_by_amba_alz=True' to be deleted." -ForegroundColor Cyan
 
   # Returning items
   $oldActionGroupIds
