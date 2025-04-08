@@ -21,11 +21,11 @@
     - remove ONLY policy definitions and policy initiatives created by the AMBA-ALZ deployment
     - remove ONLY orphaned alerts deployed by the AMBA-ALZ pattern
 
-    In order for this script to function the deployed resources must have a tag _deployed_by_amba with a value of true and Policy resources must have metadata property
-    named _deployed_by_amba with a value of True. These tags and metadata are included in the automation, but if they are subsequently removed, there may be orphaned
+    In order for this script to function the deployed resources must have a tag _deployed_by_amba_alz with a value of true and Policy resources must have metadata property
+    named _deployed_by_amba_alz with a value of True. These tags and metadata are included in the automation, but if they are subsequently removed, there may be orphaned
     resources after this script executes.
 
-    The Role Assignments associated with Policy assignment identities and including _deployed_by_amba in the description field will also be deleted.
+    The Role Assignments associated with Policy assignment identities and including _deployed_by_amba_alz in the description field will also be deleted.
 
     This script leverages the Azure Resource Graph to find object to delete. Note that the Resource Graph lags behind ARM by a couple minutes.
 
@@ -68,6 +68,8 @@
 # Declaring required PowerShell modules and minimal versions
 #Requires -Modules @{ ModuleName="Az.Accounts"; ModuleVersion="2.16.0" }
 #Requires -Modules @{ ModuleName="Az.Resources"; ModuleVersion="6.16.0" }
+#Requires -Modules @{ ModuleName="Az.ResourceGraph"; ModuleVersion="1.0.0" }
+#Requires -Modules @{ ModuleName="Az.ManagedServiceIdentity"; ModuleVersion="1.2.0" }
 
 [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'High')]
 param(

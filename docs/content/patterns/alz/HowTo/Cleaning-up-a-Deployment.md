@@ -6,9 +6,12 @@ weight: 52
 
 ### In this page
 
+> [Overview](../Cleaning-up-a-Deployment#cleanup-script-execution) </br>
 > [Cleanup Script Execution](../Cleaning-up-a-Deployment#cleanup-script-execution) </br>
 
-In some cases, you may need to remove all resources deployed by the AMBA-ALZ solution. The following instructions provide a detailed guide on executing a PowerShell script to delete all deployed resources, including:
+## Overview
+
+In some cases, you may need to remove some or all the resources deployed by the AMBA-ALZ solution. The following instructions provide a detailed guide on executing a PowerShell script to delete deployed resources, including:
 
 - Metric Alerts
 - Activity Log Alerts
@@ -19,7 +22,26 @@ In some cases, you may need to remove all resources deployed by the AMBA-ALZ sol
 - Action Groups
 - Alert Processing Rules
 
-All resources deployed as part of the initial AMBA deployment, as well as those created dynamically by 'deploy if not exist' policies, are tagged, marked in metadata, or described (depending on resource capabilities) with the value `_deployed_by_amba` or `_deployed_by_amba=True`. This metadata is crucial for the cleanup process; if it has been removed or altered, the cleanup script will not target those resources.
+All resources deployed as part of the initial AMBA-ALZ deployment, as well as those created dynamically by 'deploy if not exist' policies, are tagged, marked in metadata, or described (depending on resource capabilities) with either `_deployed_by_amba=True`or `_deployed_by_amba_alz=True`. This metadata is crucial for the cleanup process; if it has been removed or altered, the cleanup script will not target those resources.
+
+The cleanItems parameter will drive what needs to be removed. Allowed values for the cleanItems parameters are:
+
+| Parameter value | Removed resources  |
+| --------------------- | ------------------- |
+| Amba-Alz              | All AMBA-ALZ deployed resources |
+| Deployments           | Only AMBA-ALZ deployment records |
+| OldNotificationAssets | Only AMBA-ALZ notification assets older than release [2024-03-01](../../Overview/Whats-New#2024-03-01) |
+| NotificationAssets    | Only AMBA-ALZ notification assets |
+| Alerts                | Only AMBA-ALZ alerts |
+| PolicyAssignments     | Only AMBA-ALZ policy assignments and role assignment |
+| PolicyDefinitions     | Only AMBA-ALZ policy definitions and policy initiatives |
+| OrphanedAlerts        | Only AMBA-ALZ orphaned alerts |
+
+Run the following command to **get full help on script usage:**
+
+  ```powershell
+  Get-help ./Start-AMBA-ALZ-Maintenance.ps1
+  ```
 
 ## Cleanup Script Execution
 
@@ -35,33 +57,29 @@ To download the cleanup script file, follow these steps. Alternatively, you can 
 2. Browse to the `patterns/alz/scripts` directory.
 3. Open the **Start-AMBA-ALZ-Maintenance.ps1** script file.
 4. Click the **Raw** button.
-5. Save the file as **Start-AMBA-ALZ-Maintenance.ps1**.
+5. Save the file locally on your hard drive as **Start-AMBA-ALZ-Maintenance.ps1**.
 
 ### Executing the Script
 
 1. Launch PowerShell.
 2. Ensure the following modules are installed:
-  - **Az.Accounts**: if not installed, use `Install-Module Az.Accounts` to install it.
-  - **Az.Resources**: if not installed, use `Install-Module Az.Resources` to install it.
-  - **Az.ResourceGraph**: if not installed, use `Install-Module Az.ResourceGraph` to install it.
-  - **Az.ManagedServiceIdentity**: if not installed, use `Install-Module Az.ManagedServiceIdentity` to install it.
-3. Navigate to the directory containing the **Start-ALZ-Maintenance.ps1** script.
+
+   - **Az.Accounts**: if not installed, use `Install-Module Az.Accounts` to install it.
+   - **Az.Resources**: if not installed, use `Install-Module Az.Resources` to install it.
+   - **Az.ResourceGraph**: if not installed, use `Install-Module Az.ResourceGraph` to install it.
+   - **Az.ManagedServiceIdentity**: if not installed, use `Install-Module Az.ManagedServiceIdentity` to install it.
+
+3. Navigate to the folder where the **Start-ALZ-Maintenance.ps1** script was saved.
 4. Set the _**$pseudoRootManagementGroup**_ variable using the command below:
 
-  ```powershell
-  $pseudoRootManagementGroup = "The pseudo root management group ID parenting the identity, management and connectivity management groups"
-  ```
+    ```powershell
+    $pseudoRootManagementGroup = "The pseudo root management group ID parenting the identity, management and connectivity management groups"
+    ```
 
 5. Sign in to your Azure account using the `Connect-AzAccount` command. Ensure that the account has the necessary permissions to remove Policy Assignments, Policy Definitions, and resources at the required Management Group scope.
-6. Run the script with one of the following options:
+6. Run the script, making sure to pass the correct and relevant cleanItems parameter value, using one of the following options:
 
    {{% include "PowerShell-ExecutionPolicy.md" %}}
-
-   **Get full help on script usage:**
-
-  ```powershell
-  Get-help ./Start-AMBA-ALZ-Maintenance.ps1
-  ```
 
   **Show output of what would happen if deletes executed:**
 
