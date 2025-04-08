@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.33.13.18514",
-      "templateHash": "9548746788318977107"
+      "templateHash": "13339937273487526084"
     }
   },
   "parameters": {
@@ -131,7 +131,7 @@
           "alzCloudEnvironments": [
             "AzureCloud"
           ],
-          "_deployed_by_amba": true
+          "_deployed_by_amba_alz": true
         },
         "parameters": {
           "ALZMonitorResourceGroupName": {
@@ -5490,7 +5490,7 @@
           "alzCloudEnvironments": [
             "AzureCloud"
           ],
-          "_deployed_by_amba": true
+          "_deployed_by_amba_alz": true
         },
         "parameters": {
           "ALZMonitorResourceGroupName": {
