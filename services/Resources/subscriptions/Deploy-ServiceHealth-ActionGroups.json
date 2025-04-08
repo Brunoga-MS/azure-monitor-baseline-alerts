@@ -14,7 +14,7 @@
       "alzCloudEnvironments": [
         "AzureCloud"
       ],
-      "_deployed_by_amba": "True"
+      "_deployed_by_amba_alz": true
     },
     "parameters": {
       "MonitorDisableTagName": {
@@ -53,7 +53,7 @@
           "description": "Tags on the Resource group the alert is placed in"
         },
         "defaultValue": {
-          "_deployed_by_amba": true
+          "_deployed_by_amba_alz": true
         }
       },
       "ALZMonitorResourceGroupLocation": {
@@ -365,7 +365,7 @@
                             "name": "[[concat('ag-AMBA-SH-', subscription().displayName, '-001')]",
                             "location": "Global",
                             "tags": {
-                              "_deployed_by_amba": true
+                              "_deployed_by_amba_alz": true
                             },
                             "properties": {
                               "groupShortName": "SH-ActGrp",

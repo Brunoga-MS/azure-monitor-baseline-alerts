@@ -14,7 +14,7 @@
       "alzCloudEnvironments": [
         "AzureCloud"
       ],
-      "_deployed_by_amba": "True"
+      "_deployed_by_amba_alz": true
     },
     "parameters": {
       "enabled": {
@@ -44,7 +44,7 @@
           "description": "Tags on the Resource group the alert is placed in"
         },
         "defaultValue": {
-          "_deployed_by_amba": true
+          "_deployed_by_amba_alz": true
         }
       },
       "alertResourceGroupLocation": {
@@ -291,7 +291,7 @@
                             "name": "ServiceHealthPlannedMaintenance",
                             "location": "global",
                             "tags": {
-                              "_deployed_by_amba": true
+                              "_deployed_by_amba_alz": true
                             },
                             "properties": {
                               "actions": {
@@ -332,7 +332,7 @@
                             "name": "ServiceHealthPlannedMaintenance",
                             "location": "global",
                             "tags": {
-                              "_deployed_by_amba": true
+                              "_deployed_by_amba_alz": true
                             },
                             "properties": {
                               "actions": {

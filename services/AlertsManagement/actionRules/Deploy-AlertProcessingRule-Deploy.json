@@ -14,7 +14,7 @@
       "alzCloudEnvironments": [
         "AzureCloud"
       ],
-      "_deployed_by_amba": "True"
+      "_deployed_by_amba_alz": true
     },
     "parameters": {
       "ALZMonitorResourceGroupName": {
@@ -32,7 +32,7 @@
           "description": "Tags on the Resource group the alert is placed in"
         },
         "defaultValue": {
-          "_deployed_by_amba": true
+          "_deployed_by_amba_alz": true
         }
       },
       "ALZMonitorResourceGroupLocation": {
@@ -402,7 +402,7 @@
                             "name": "[[concat('ag-AMBA-', subscription().displayName, parameters('ALZNotificationAssetSuffix'))]",
                             "location": "Global",
                             "tags": {
-                              "_deployed_by_amba": true
+                              "_deployed_by_amba_alz": true
                             },
                             "properties": {
                               "groupShortName": "ActGrp",
@@ -425,7 +425,7 @@
                               "[[concat('ag-AMBA-', subscription().displayName, parameters('ALZNotificationAssetSuffix'))]"
                             ],
                             "tags": {
-                              "_deployed_by_amba": true
+                              "_deployed_by_amba_alz": true
                             },
                             "properties": {
                               "scopes": [

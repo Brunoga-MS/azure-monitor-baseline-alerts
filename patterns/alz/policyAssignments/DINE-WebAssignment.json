@@ -98,7 +98,7 @@
         "notScopes": "[parameters('policyAssignmentExclusions')]",
         "parameters": "[parameters('policyAssignmentParameters')]",
         "metadata": {
-          "_deployed_by_amba": true
+          "_deployed_by_amba_alz": true
         }
       }
     },
@@ -113,7 +113,7 @@
         "principalType": "ServicePrincipal",
         "roleDefinitionId": "[concat('/providers/Microsoft.Authorization/roleDefinitions/', variables('rbacContributor'))]",
         "principalId": "[toLower(reference(concat('/providers/Microsoft.Authorization/policyAssignments/', variables('policyAssignmentNames').ambaWeb), '2019-09-01', 'Full' ).identity.principalId)]",
-        "description": "_deployed_by_amba"
+        "description": "_deployed_by_amba_alz"
       }
     },
     {
@@ -129,7 +129,7 @@
         "principalType": "ServicePrincipal",
         "roleDefinitionId": "[concat('/providers/Microsoft.Authorization/roleDefinitions/', variables('rbacManagedIdentityOperator'))]",
         "principalId": "[toLower(reference(concat('/providers/Microsoft.Authorization/policyAssignments/', variables('policyAssignmentNames').ambaWeb), '2019-09-01', 'Full' ).identity.principalId)]",
-        "description": "_deployed_by_amba"
+        "description": "_deployed_by_amba_alz"
       }
     }
   ],

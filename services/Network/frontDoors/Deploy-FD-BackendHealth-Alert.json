@@ -11,7 +11,7 @@
       "version": "1.1.2",
       "category": "Networking",
       "source": "https://github.com/Azure/azure-monitor-baseline-alerts/",
-      "_deployed_by_amba": "True"
+      "_deployed_by_amba_alz": true
     },
     "parameters": {
       "severity": {
@@ -244,7 +244,7 @@
                     "name": "[[concat(parameters('resourceName'), '-BackendHealthPercentage')]",
                     "location": "global",
                     "tags": {
-                      "_deployed_by_amba": true
+                      "_deployed_by_amba_alz": true
                     },
                     "properties": {
                       "description": "Metric Alert for Frontdoor Backend Health Percentage",

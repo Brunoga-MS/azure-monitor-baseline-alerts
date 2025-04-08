@@ -19,7 +19,7 @@
         "rgTags": {
             "type": "object",
             "defaultValue": {
-                "_deployed_by_amba": true
+                "_deployed_by_amba_alz": true
             },
             "metadata": {
                 "description": "Tags for the resource group."

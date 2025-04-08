@@ -14,7 +14,7 @@
       "alzCloudEnvironments": [
         "AzureCloud"
       ],
-      "_deployed_by_amba": "True"
+      "_deployed_by_amba_alz": true
     },
     "parameters": {
       "UAMIResourceId": {
@@ -361,7 +361,7 @@
                       }
                     },
                     "tags": {
-                      "_deployed_by_amba": true
+                      "_deployed_by_amba_alz": true
                     },
                     "properties": {
                       "displayName": "[[concat(parameters('resourceName'), '-Application Insights Throttling Limit Reached (Preview)')]",

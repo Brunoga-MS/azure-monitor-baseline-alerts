@@ -14,7 +14,7 @@
       "alzCloudEnvironments": [
         "AzureCloud"
       ],
-      "_deployed_by_amba": "True"
+      "_deployed_by_amba_alz": true
     },
     "parameters": {
       "alertResourceGroupName": {
@@ -430,7 +430,7 @@
                               }
                             },
                             "tags": {
-                              "_deployed_by_amba": true
+                              "_deployed_by_amba_alz": true
                             },
                             "properties": {
                               "displayName": "[[concat(subscription().displayName, '-HybridVMHighDataDiskWriteLatencyAlert')]",

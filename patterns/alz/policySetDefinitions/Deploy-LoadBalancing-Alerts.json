@@ -12,7 +12,7 @@
       "alzCloudEnvironments": [
         "AzureCloud"
       ],
-      "_deployed_by_amba": true
+      "_deployed_by_amba_alz": true
     },
     "parameters": {
       "ALZMonitorDisableTagName": {

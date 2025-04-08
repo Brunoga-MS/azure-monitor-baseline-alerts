@@ -14,7 +14,7 @@
       "alzCloudEnvironments": [
         "AzureCloud"
       ],
-      "_deployed_by_amba": "True"
+      "_deployed_by_amba_alz": true
     },
     "parameters": {
       "severity": {
@@ -266,7 +266,7 @@
                     "name": "[[concat(parameters('resourceName'), '-DiskQueueLengthAlert')]",
                     "location": "global",
                     "tags": {
-                      "_deployed_by_amba": true
+                      "_deployed_by_amba_alz": true
                     },
                     "properties": {
                       "description": "Metric Alert for App Service Plan Disk Queue Length",

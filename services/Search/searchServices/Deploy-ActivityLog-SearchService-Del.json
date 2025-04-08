@@ -14,7 +14,7 @@
       "alzCloudEnvironments": [
         "AzureCloud"
       ],
-      "_deployed_by_amba": "True"
+      "_deployed_by_amba_alz": true
     },
     "parameters": {
       "enabled": {
@@ -213,7 +213,7 @@
                             "name": "ActivitySearchServiceDelete",
                             "location": "global",
                             "tags": {
-                              "_deployed_by_amba": true
+                              "_deployed_by_amba_alz": true
                             },
                             "properties": {
                               "description": "Activity Log Search Service Delete",

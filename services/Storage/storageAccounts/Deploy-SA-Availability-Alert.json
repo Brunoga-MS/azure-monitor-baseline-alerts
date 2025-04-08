@@ -14,7 +14,7 @@
       "alzCloudEnvironments": [
         "AzureCloud"
       ],
-      "_deployed_by_amba": "True"
+      "_deployed_by_amba_alz": true
     },
     "parameters": {
       "severity": {
@@ -247,7 +247,7 @@
                     "name": "[[concat(parameters('resourceName'), '-AvailabilityAlert')]",
                     "location": "global",
                     "tags": {
-                      "_deployed_by_amba": true
+                      "_deployed_by_amba_alz": true
                     },
                     "properties": {
                       "description": "Metric Alert for Storage Account Availability",
