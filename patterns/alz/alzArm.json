@@ -659,7 +659,6 @@
             "pidCuaVMDeploymentName": "[take(concat('amba-pid-VM-', variables('cuaidVM'), '-' , uniqueString(deployment().location, parameters('enterpriseScaleCompanyPrefix'), parameters('currentDateTimeUtcNow'))), 64)]",
             "pidCuaWebDeploymentName": "[take(concat('amba-pid-Web-', variables('cuaidWeb'), '-' , uniqueString(deployment().location, parameters('enterpriseScaleCompanyPrefix'), parameters('currentDateTimeUtcNow'))), 64)]"
         },
-
         // Declaring PIDs
         "cuaid": "d6b3b08c-5825-4b89-a62b-e3168d3d8fb0",
         "cuaidConnectivity": "2d69aa07-8780-4697-a431-79882cb9f00e",
