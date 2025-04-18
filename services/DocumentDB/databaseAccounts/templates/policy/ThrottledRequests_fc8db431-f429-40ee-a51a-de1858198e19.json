@@ -1,16 +1,20 @@
 {
   "type": "Microsoft.Authorization/policyDefinitions",
   "apiVersion": "2021-06-01",
-  "name": "Deploy_FD_BackendHealth_Alert",
+  "name": "fc8db431-f429-40ee-a51a-de1858198e19",
   "properties": {
     "policyType": "Custom",
     "mode": "All",
-    "displayName": "Deploy Azure Monitor Baseline Alerts (AMBA-ALZ) - Frontdoor Backend Health Percentage Alert",
-    "description": "Policy to audit/deploy FrontDoor Backend Health Percentage  Alert",
+    "displayName": "Deploy DocumentDB databaseAccounts ThrottledRequests Alert",
+    "description": "Policy to Audit/Deploy DocumentDB databaseAccounts ThrottledRequests Alert",
     "metadata": {
-      "version": "1.1.2",
-      "category": "Networking",
+      "version": "1.0.0-preview",
+      "category": "DocumentDB",
+      "preview": true,
       "source": "https://github.com/Azure/azure-monitor-baseline-alerts/",
+      "alzCloudEnvironments": [
+        "AzureCloud"
+      ],
       "_deployed_by_amba": "True"
     },
     "parameters": {
@@ -60,7 +64,7 @@
           "PT30M",
           "PT1H"
         ],
-        "defaultValue": "PT5M"
+        "defaultValue": "PT1M"
       },
       "autoMitigate": {
         "type": "String",
@@ -92,7 +96,7 @@
           "displayName": "Threshold",
           "description": "Threshold for the alert"
         },
-        "defaultValue": "90"
+        "defaultValue": "50"
       },
       "effect": {
         "type": "String",
@@ -104,20 +108,20 @@
           "deployIfNotExists",
           "disabled"
         ],
-        "defaultValue": "disabled"
+        "defaultValue": "deployIfNotExists"
       },
       "MonitorDisableTagName": {
         "type": "String",
         "metadata": {
-          "displayName": "ALZ Monitoring disabled tag name",
-          "description": "Tag name to disable monitoring. Set to true if monitoring should be disabled"
+          "displayName": "Monitoring disabled tag name",
+          "description": "Tag name used to disable monitoring at the resource level. Set to true if monitoring should be disabled."
         },
         "defaultValue": "MonitorDisable"
       },
       "MonitorDisableTagValues": {
         "type": "Array",
         "metadata": {
-          "displayName": "ALZ Monitoring disabled tag values(s)",
+          "displayName": "Monitoring disabled tag values(s)",
           "description": "Tag value(s) used to disable monitoring at the resource level. Set to true if monitoring should be disabled."
         },
         "defaultValue": [
@@ -133,7 +137,7 @@
         "allOf": [
           {
             "field": "type",
-            "equals": "Microsoft.Network/frontdoors"
+            "equals": "Microsoft.DocumentDB/databaseAccounts"
           },
           {
             "field": "[[concat('tags[', parameters('MonitorDisableTagName'), ']')]",
@@ -148,19 +152,20 @@
             "/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"
           ],
           "type": "Microsoft.Insights/metricAlerts",
+          "name": "[[concat(field('name'), '-ThrottledRequests')]",
           "existenceCondition": {
             "allOf": [
               {
                 "field": "Microsoft.Insights/metricAlerts/criteria.Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria.allOf[*].metricNamespace",
-                "equals": "Microsoft.Network/frontdoors"
+                "equals": "Microsoft.DocumentDB/databaseAccounts"
               },
               {
                 "field": "Microsoft.Insights/metricAlerts/criteria.Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria.allOf[*].metricName",
-                "equals": "BackendHealthPercentage"
+                "equals": "ThrottledRequests"
               },
               {
                 "field": "Microsoft.Insights/metricalerts/scopes[*]",
-                "equals": "[[concat(subscription().id, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/frontdoors/', field('fullName'))]"
+                "equals": "[[concat(subscription().id, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.DocumentDB/databaseAccounts/', field('fullName'))]"
               },
               {
                 "field": "Microsoft.Insights/metricAlerts/enabled",
@@ -184,15 +189,15 @@
               },
               {
                 "field": "Microsoft.Insights/metricAlerts/criteria.Microsoft-Azure-Monitor-SingleResourceMultipleMetricCriteria.allOf[*].timeAggregation",
-                "equals": "Average"
+                "equals": "Count"
               },
               {
                 "field": "Microsoft.Insights/metricAlerts/criteria.Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria.allOf[*].StaticThresholdCriterion.operator",
-                "equals": "LessThan"
+                "equals": "GreaterThan"
               },
               {
                 "field": "Microsoft.Insights/metricAlerts/criteria.Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria.allOf[*].StaticThresholdCriterion.threshold",
-                "equals": "[[if(contains(field('tags'), '_amba-BackendHealthPercentage-threshold-Override_'), field('tags._amba-BackendHealthPercentage-threshold-Override_'), parameters('threshold'))]"
+                "equals": "[[if(contains(field('tags'), '_amba-ThrottledRequests-threshold-Override_'), field('tags._amba-ThrottledRequests-threshold-Override_'), parameters('threshold'))]"
               }
             ]
           },
@@ -241,13 +246,13 @@
                   {
                     "type": "Microsoft.Insights/metricAlerts",
                     "apiVersion": "2018-03-01",
-                    "name": "[[concat(parameters('resourceName'), '-BackendHealthPercentage')]",
+                    "name": "[[concat(parameters('resourceName'), '-ThrottledRequests')]",
                     "location": "global",
                     "tags": {
                       "_deployed_by_amba": true
                     },
                     "properties": {
-                      "description": "Metric Alert for Frontdoor Backend Health Percentage",
+                      "description": "Metric Alert for DocumentDB databaseAccounts ThrottledRequests",
                       "severity": "[[parameters('severity')]",
                       "enabled": "[[parameters('enabled')]",
                       "scopes": [
@@ -258,12 +263,12 @@
                       "criteria": {
                         "allOf": [
                           {
-                            "name": "BackendHealthPercentage",
-                            "metricNamespace": "Microsoft.Network/frontdoors",
-                            "metricName": "BackendHealthPercentage",
-                            "operator": "LessThan",
+                            "name": "ThrottledRequests",
+                            "metricNamespace": "Microsoft.DocumentDB/databaseAccounts",
+                            "metricName": "ThrottledRequests",
+                            "operator": "GreaterThan",
                             "threshold": "[[parameters('threshold')]",
-                            "timeAggregation": "Average",
+                            "timeAggregation": "Count",
                             "criterionType": "StaticThresholdCriterion"
                           }
                         ],
@@ -317,7 +322,7 @@
                   "value": "[[parameters('enabled')]"
                 },
                 "threshold": {
-                  "value": "[[if(contains(field('tags'), '_amba-BackendHealthPercentage-threshold-Override_'), field('tags._amba-BackendHealthPercentage-threshold-Override_'), parameters('threshold'))]"
+                  "value": "[[if(contains(field('tags'), '_amba-ThrottledRequests-threshold-Override_'), field('tags._amba-ThrottledRequests-threshold-Override_'), parameters('threshold'))]"
                 }
               }
             }
