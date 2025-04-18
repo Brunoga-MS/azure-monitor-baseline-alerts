@@ -26,7 +26,7 @@
       "ALZMonitorResourceGroupTags": {
         "type": "Object",
         "defaultValue": {
-          "_deployed_by_alz_monitor": true
+          "_deployed_by_amba_alz": true
         },
         "metadata": {
           "displayName": "ALZ Monitor Resource Group Tags",
