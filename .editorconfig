@@ -10,7 +10,8 @@ insert_final_newline = true
 
 # Ignore paths
 [*/patterns/alz/policyDefinitions/*.json]
-generated_code = true
+end_of_line = crlf
+insert_final_newline = false
 
 [*.json]
 indent_size = 2
@@ -18,7 +19,7 @@ indent_style = space
 charset = utf-8
 end_of_line = crlf
 trim_trailing_whitespace = true
-insert_final_newline = false
+insert_final_newline = true
 
 [*]
 indent_size = 2
