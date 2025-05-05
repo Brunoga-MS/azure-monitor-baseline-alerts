@@ -19,6 +19,8 @@
           - "patterns/alz/templates/**.bicep"
           - "services/**.json"
 
+      workflow_dispatch: {}
+
     ###############
     # Set the Job #
     ###############
