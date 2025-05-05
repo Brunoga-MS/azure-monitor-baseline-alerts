@@ -8,6 +8,10 @@ end_of_line = lf
 trim_trailing_whitespace = true
 insert_final_newline = true
 
+[./patterns/alz/policyDefinitions/*.json]
+end_of_line = crlf
+insert_final_newline = false
+
 [*.json]
 indent_size = 2
 indent_style = space
