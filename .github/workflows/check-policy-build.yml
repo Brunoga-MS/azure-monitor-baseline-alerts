@@ -18,7 +18,6 @@
           - "patterns/alz/policySetDefinitions/**.json"
           - "patterns/alz/templates/**.bicep"
           - "services/**.json"
-
       workflow_dispatch: {}
 
     ###############
