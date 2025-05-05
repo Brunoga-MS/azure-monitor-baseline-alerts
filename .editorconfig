@@ -18,7 +18,6 @@ trim_trailing_whitespace = true
 insert_final_newline = true
 
 # Ignore settings for the following path
- [**/patterns/alz/policyDefinitions/*.json]
- end_of_line = unset
- insert_final_newline = unset
- 
+[*/patterns/alz/policyDefinitions/*.json]
+end_of_line = unset
+insert_final_newline = unset
