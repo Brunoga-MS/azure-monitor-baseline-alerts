@@ -166,7 +166,7 @@
               },
               {
                 "field": "Microsoft.Insights/metricalerts/scopes[*]",
-                "equals": "[[concat(subscription().id, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.DocumentDB/databaseAccounts/', field('fullName'))]"
+                "equals": "[[field('id')]]"
               },
               {
                 "field": "Microsoft.Insights/metricAlerts/enabled",
@@ -194,7 +194,7 @@
               },
               {
                 "field": "Microsoft.Insights/metricAlerts/criteria.Microsoft-Azure-Monitor-MultipleResourceMultipleMetricCriteria.allOf[*].DynamicThresholdCriterion.operator",
-                "equals": "GreaterThanOrLessThan"
+                "equals": "GreaterOrLessThan"
               },
               {
                 "field": "Microsoft.Insights/metricAlerts/criteria.Microsoft-Azure-Monitor-MultipleResourceMultipleMetricCriteria.allOf[*].DynamicThresholdCriterion.alertSensitivity",
@@ -275,7 +275,7 @@
                             "name": "DataUsage",
                             "metricNamespace": "Microsoft.DocumentDB/databaseAccounts",
                             "metricName": "DataUsage",
-                            "operator": "GreaterThanOrLessThan",
+                            "operator": "GreaterOrLessThan",
                             "alertSensitivity": "[[parameters('alertSensitivity')]",
                             "failingPeriods": {
                               "minFailingPeriodsToAlert": 4,
@@ -314,7 +314,7 @@
               },
               "parameters": {
                 "resourceName": {
-                  "value": "[[field('name')]"
+                  "value": "[[replace(field('fullName'),'/','-')]"
                 },
                 "resourceId": {
                   "value": "[[field('id')]"
