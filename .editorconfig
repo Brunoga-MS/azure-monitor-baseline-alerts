@@ -1,6 +1,6 @@
 root = true
 
-[*.{yml,yaml}]
+[*]
 indent_size = 2
 indent_style = space
 charset = utf-8
@@ -16,18 +16,10 @@ end_of_line = crlf
 trim_trailing_whitespace = true
 insert_final_newline = true
 
-[**/patterns/alz/policyDefinition/*.json]
+[{**patterns/alz/policyDefinition/*.json,**services/**/templates/policy**/*.json}]
 indent_size = 2
 indent_style = space
 charset = utf-8
 end_of_line = lf
 trim_trailing_whitespace = true
 insert_final_newline = false
-
-[**/services/**/templates/policy**/*.json]
-indent_size = 2
-indent_style = space
-charset = utf-8
-end_of_line = lf
-trim_trailing_whitespace = true
-insert_final_newline = true
