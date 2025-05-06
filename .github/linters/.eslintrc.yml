@@ -53,6 +53,9 @@ overrides:
       jsonSyntax: JSONC
     rules:
       "jsonc/no-comments": "warn"
+    ignorePatterns:
+      "**patterns/alz/policyDefinition/*.json"
+      "**services/**/templates/policy**/*.json"
 
   # JSONC files
   - files:
