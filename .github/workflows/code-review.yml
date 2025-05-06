@@ -5,6 +5,7 @@
     pull_request:
       branches:
         - main
+        - wildBranch
     workflow_dispatch: {}
 
   jobs:
