@@ -15,6 +15,7 @@
         - ready_for_review
       paths:
         - "services/**.json"
+        - "!services/**/templates/**"
 
     workflow_dispatch: {}
 
