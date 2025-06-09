@@ -1,7 +1,7 @@
 ﻿
 # Define the root directory to start searching
-$policiesRootDir = ".\services"
-$alertTablesRoorDir = ".\docs\content\patterns\alz\getting-started"
+$policiesRootDir = "services"
+$alertTablesRoorDir = "docs/content/patterns/alz/getting-started"
 
 # Define policy definitions to be excluded from the search
 $exclusionFileList = @(
