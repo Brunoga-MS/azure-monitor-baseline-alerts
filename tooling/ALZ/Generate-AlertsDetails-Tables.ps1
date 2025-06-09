@@ -18,9 +18,9 @@ $severityMapping = [ordered]@{
 }
 
 # Define source table file names
-$activityLogAlertTableFile = $alertTablesRoorDir + "\Activity-Log-Alerts-Table.md"
-$LogSearchAlertTableFile = $alertTablesRoorDir + "\Log-Search-Alerts-Table.md"
-$metricAlertTableFile = $alertTablesRoorDir + "\Metric-Alerts-Table.md"
+$activityLogAlertTableFile = $alertTablesRoorDir + "/Activity-Log-Alerts-Table.md"
+$LogSearchAlertTableFile = $alertTablesRoorDir + "/Log-Search-Alerts-Table.md"
+$metricAlertTableFile = $alertTablesRoorDir + "/Metric-Alerts-Table.md"
 
 # Define source table file heading and structure
 
