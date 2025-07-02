@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.34.44.8038",
-      "templateHash": "13137483070911242883"
+      "templateHash": "3337851516061004044"
     }
   },
   "parameters": {
@@ -145,7 +145,7 @@
           "ALZMonitorResourceGroupTags": {
             "type": "Object",
             "defaultValue": {
-              "_deployed_by_alz_monitor": true
+              "_deployed_by_amba_alz": true
             },
             "metadata": {
               "displayName": "ALZ Monitor Resource Group Tags",
@@ -5504,7 +5504,7 @@
           "ALZMonitorResourceGroupTags": {
             "type": "Object",
             "defaultValue": {
-              "_deployed_by_alz_monitor": true
+              "_deployed_by_amba_alz": true
             },
             "metadata": {
               "displayName": "ALZ Monitoring Resource Group Tags",

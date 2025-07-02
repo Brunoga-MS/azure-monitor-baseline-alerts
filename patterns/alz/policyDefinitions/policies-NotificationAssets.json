@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.34.44.8038",
-      "templateHash": "11484911645600746618"
+      "templateHash": "16353796503064133527"
     }
   },
   "parameters": {
@@ -145,7 +145,7 @@
           "ALZMonitorResourceGroupTags": {
             "type": "Object",
             "defaultValue": {
-              "_deployed_by_alz_monitor": true
+              "_deployed_by_amba_alz": true
             },
             "metadata": {
               "displayName": "Resource Group Tags",
