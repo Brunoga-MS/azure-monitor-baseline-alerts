@@ -1,16 +1,14 @@
-Describe 'UnitTest-PolicyInitiatives-Tables-Update.' {
+Describe 'UnitTest-PolicyInitiatives-Tables-Update' {
   BeforeAll {
 
-    if(!(Test-Path "buildoutPolicyInitiatives")) {
-      New-Item -Name "buildoutPolicyInitiatives" -Type Directory
-    }
+    New-Item -Name "buildoutPolicyInitiatives" -Type Directory
 
     & "./tooling/alz/Generate-PolicyInitiatives-Tables.ps1" -policyInitiativesTablesRootDir "buildoutPolicyInitiatives"
   }
 
   Context "Check Policy Initiative tables update" {
 
-    It "Check Alerts Details table for ActivityLog alerts update done" {
+    It "Check Policy Initiatives table update done" {
 
       # Setting files location
       $prFilePath = "./docs/content/patterns/alz/getting-started/"
