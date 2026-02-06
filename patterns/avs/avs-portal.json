@@ -25,16 +25,6 @@
               "instanceDetailsLabel": "AMBA-AVS Accelerator"
             },
             {
-              "name": "feedbackSection",
-              "type": "Microsoft.Common.InfoBox",
-              "visible": true,
-              "options": {
-                "text": "If you have any feedback, please use the following link: https://aka.ms/amba/issues",
-                "uri": "https://aka.ms/amba/issues",
-                "style": "Info"
-              }
-            },
-            {
               "name": "getSubscriptionsAPI",
               "type": "Microsoft.Solutions.ArmApiControl",
               "request": {
@@ -81,24 +71,6 @@
               "visible": true
             },
             {
-              "name": "AVSMonitorActionGroupEmail",
-              "type": "Microsoft.Common.TextBox",
-              "label": "Email contact for action group notifications",
-              "toolTip": "Provide the email address(es) for the action group used for monitoring.",
-              "visible": "[equals(steps('Notification').NotificationOption,'No')]",
-              "placeholder": "[\"example1@contoso.com\",\"example2@contoso.com\"]",
-              "defaultValue": "",
-              "constraints": {
-                "required": false,
-                "validations": [
-                  {
-                    "regex": "",
-                    "validationMessage": ""
-                  }
-                ]
-              }
-            },
-            {
               "name": "AVSMonitorRGName",
               "type": "Microsoft.Common.TextBox",
               "label": "Resource group for baseline alerts",
@@ -137,6 +109,58 @@
               "visible": true
             },
             {
+              "name": "AVSAlertPrefix",
+              "type": "Microsoft.Common.TextBox",
+              "label": "Alert name prefix",
+              "toolTip": "Provide a prefix to use for AVS alert creation.",
+              "visible": "true",
+              "defaultValue": "AVSAlerts",
+              "constraints": {
+                "required": "true",
+                "validations": [
+                  {
+                    "regex": "^[a-zA-Z0-9][a-zA-Z0-9-_.()]{0,89}[a-zA-Z0-9]$",
+                    "validationMessage": "Please provide a valid alert name prefix"
+                  }
+                ]
+              }
+            },
+            {
+              "name": "AVSActionGroupName",
+              "type": "Microsoft.Common.TextBox",
+              "label": "Action group name",
+              "toolTip": "Provide a name for the action group containing the email address(es) for alert notifications.",
+              "visible": "true",
+              "defaultValue": "AVSAlerts",
+              "constraints": {
+                "required": "true",
+                "validations": [
+                  {
+                    "regex": "^[a-zA-Z0-9][a-zA-Z0-9-_.()]{0,89}[a-zA-Z0-9]$",
+                    "validationMessage": "Please provide a valid action group name"
+                  }
+                ]
+              }
+            },
+            {
+              "name": "AVSMonitorActionGroupEmail",
+              "type": "Microsoft.Common.TextBox",
+              "label": "Email addresses to be added to the action group.",
+              "toolTip": "Provide the email address(es) for the action group used for notification. Use the format [\"example1@contoso.com\",\"example2@contoso.com\"].",
+              "visible": true,
+              "placeholder": "[\"example1@contoso.com\",\"example2@contoso.com\"]",
+              "defaultValue": "",
+              "constraints": {
+                "required": false,
+                "validations": [
+                  {
+                    "regex": "",
+                    "validationMessage": ""
+                  }
+                ]
+              }
+            },
+            {
               "name": "cuaSection",
               "type": "Microsoft.Common.Section",
               "label": "Telemetry Tracking Using Customer Usage Attribution (PID)",
@@ -173,6 +197,16 @@
                 }
               ],
               "visible": true
+            },
+            {
+              "name": "feedbackSection",
+              "type": "Microsoft.Common.InfoBox",
+              "visible": true,
+              "options": {
+                "text": "If you have any feedback, please use the following link: https://aka.ms/amba/issues",
+                "uri": "https://aka.ms/amba/issues",
+                "style": "Info"
+              }
             }
           ]
         }
@@ -187,8 +221,10 @@
         "SubscriptionId": "[steps('basics').resourceScope.subscription.name]",
         "PrivateCloudResourceId": "[steps('Configuration').selectPrivateCloud]",
         "AVSMonitorResourceGroupName": "[steps('basics').AVSMonitorRGName]",
-        "AVSMonitorActionGroupEmail": "[steps('basics').AVSMonitorActionGroupEmail]",
         "AVSMonitorResourceGroupLocation": "[steps('basics').AVSMonitorResourceGroupLocation]",
+        "AlertPrefix": "[steps('basics').AVSAlertPrefix]",
+        "ActionGroupName": "[steps('basics').AVSActionGroupName]",
+        "ActionGroupEmail": "[steps('basics').AVSMonitorActionGroupEmail]",
         "telemetryOptOut": "[steps('basics').cuaSection.telemetryOptOut]"
       }
     }
