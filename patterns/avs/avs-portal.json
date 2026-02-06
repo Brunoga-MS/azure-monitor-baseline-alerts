@@ -164,8 +164,6 @@
       "location": "[steps('basics').resourceScope.location.name]",
       "subscriptionId": "[steps('basics').resourceScope.subscription.id]",
       "parameters": {
-        "location": "[steps('basics').resourceScope.location.name]",
-        "SubscriptionId": "[steps('basics').resourceScope.subscription.name]",
         "PrivateCloudResourceId": "[steps('Configuration').selectPrivateCloud]",
         "AlertPrefix": "[steps('basics').AVSAlertPrefix]",
         "ActionGroupName": "[steps('basics').AVSActionGroupName]",
