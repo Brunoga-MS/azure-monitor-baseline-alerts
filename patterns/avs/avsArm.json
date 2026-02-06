@@ -35,6 +35,18 @@
         "metadata": {
           "description": "The existing Private Cloud full resource id"
         }
+      },
+      "telemetryOptOut": {
+        "type": "string",
+        "defaultValue": "No",
+        "allowedValues": [
+          "Yes",
+          "No"
+        ],
+        "metadata": {
+          "displayName": "Telemetry Opt Out",
+          "description": "The customer usage identifier used for telemetry purposes. The default value of False enables telemetry. The value of True disables telemetry."
+        }
       }
     },
     "variables": {
@@ -49,12 +61,28 @@
           "Severity": 2
         },
         {
+          "Name": "CPUCritical",
+          "Description": "CPU Usage per Cluster",
+          "Metric": "EffectiveCpuAverage",
+          "SplitDimension": "clustername",
+          "Threshold": 90,
+          "Severity": 0
+        },
+        {
           "Name": "Memory",
           "Description": "Memory Usage per Cluster",
           "Metric": "UsageAverage",
           "SplitDimension": "clustername",
           "Threshold": 80,
           "Severity": 2
+        },
+        {
+          "Name": "MemoryCritical",
+          "Description": "Memory Usage per Cluster",
+          "Metric": "UsageAverage",
+          "SplitDimension": "clustername",
+          "Threshold": 95,
+          "Severity": 0
         },
         {
           "Name": "Storage",
@@ -192,6 +220,7 @@
         ]
       },
       {
+        "condition": "[equals(parameters('telemetryOptOut'), 'No'))]",
         "type": "Microsoft.Resources/deployments",
         "apiVersion": "2020-10-01",
         "name": "[format('pid-{0}-{1}', variables('varCuaid'), uniqueString(resourceGroup().location))]",
