@@ -71,44 +71,6 @@
               "visible": true
             },
             {
-              "name": "AVSMonitorRGName",
-              "type": "Microsoft.Common.TextBox",
-              "label": "Resource group for baseline alerts",
-              "toolTip": "Resource group for activity logs, resource health alerts, action groups, and alert processing rules. Will be created in all subscriptions in scope for the policy",
-              "visible": "true",
-              "defaultValue": "rg-amba-avs-monitoring-001",
-              "constraints": {
-                "required": "true",
-                "validations": [
-                  {
-                    "regex": "^[a-zA-Z0-9][a-zA-Z0-9-_.()]{0,89}[a-zA-Z0-9]$",
-                    "validationMessage": "Please provide a valid resource group name"
-                  }
-                ]
-              }
-            },
-            {
-              "name": "getLocations",
-              "type": "Microsoft.Solutions.ArmApiControl",
-              "request": {
-                "method": "GET",
-                "path": "locations?api-version=2019-11-01"
-              }
-            },
-            {
-              "name": "AVSMonitorResourceGroupLocation",
-              "type": "Microsoft.Common.DropDown",
-              "label": "Resource group location",
-              "filter": true,
-              "toolTip": "Specify the location for said resource group",
-              "defaultValue": "[steps('basics').resourceScope.location.displayName]",
-              "constraints": {
-                "allowedValues": "[map(steps('basics').getLocations.value,(item) => parse(concat('{\"label\":\"',item.displayName,'\",\"value\":\"',item.name,'\"}')))]",
-                "required": true
-              },
-              "visible": true
-            },
-            {
               "name": "AVSAlertPrefix",
               "type": "Microsoft.Common.TextBox",
               "label": "Alert name prefix",
@@ -220,8 +182,6 @@
         "location": "[steps('basics').resourceScope.location.name]",
         "SubscriptionId": "[steps('basics').resourceScope.subscription.name]",
         "PrivateCloudResourceId": "[steps('Configuration').selectPrivateCloud]",
-        "AVSMonitorResourceGroupName": "[steps('basics').AVSMonitorRGName]",
-        "AVSMonitorResourceGroupLocation": "[steps('basics').AVSMonitorResourceGroupLocation]",
         "AlertPrefix": "[steps('basics').AVSAlertPrefix]",
         "ActionGroupName": "[steps('basics').AVSActionGroupName]",
         "ActionGroupEmail": "[steps('basics').AVSMonitorActionGroupEmail]",
