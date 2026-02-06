@@ -185,7 +185,7 @@
       "parameters": {
         "location": "[steps('basics').resourceScope.location.name]",
         "SubscriptionId": "[steps('basics').resourceScope.subscription.name]",
-        "topLevelSubscriptionId": "[steps('Configuration').selectSubscription]",
+        "PrivateCloudResourceId": "[steps('Configuration').selectPrivateCloud]",
         "AVSMonitorResourceGroupName": "[steps('basics').AVSMonitorRGName]",
         "AVSMonitorActionGroupEmail": "[steps('basics').AVSMonitorActionGroupEmail]",
         "AVSMonitorResourceGroupLocation": "[steps('basics').AVSMonitorResourceGroupLocation]",
