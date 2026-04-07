@@ -380,7 +380,7 @@
           "PT6H",
           "P1D"
         ],
-        "defaultValue": "P5M"
+        "defaultValue": "PT5M"
       },
       "LAWDailyCapLimitEvaluationFrequency": {
         "type": "String",

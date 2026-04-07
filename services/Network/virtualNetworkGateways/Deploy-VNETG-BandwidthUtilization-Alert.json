@@ -63,7 +63,7 @@
           "PT30M",
           "PT1H"
         ],
-        "defaultValue": "PT5M"
+        "defaultValue": "PT1M"
       },
       "autoMitigate": {
         "type": "String",

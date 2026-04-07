@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.34.44.8038",
-      "templateHash": "11993490033119211904"
+      "templateHash": "3349700237321182986"
     }
   },
   "parameters": {
@@ -6835,7 +6835,7 @@
               "3",
               "4"
             ],
-            "defaultValue": "2"
+            "defaultValue": "1"
           },
           "AppInsightsThrottlingLimitOperator": {
             "type": "String",
@@ -7088,7 +7088,7 @@
               "PT6H",
               "P1D"
             ],
-            "defaultValue": "P5M"
+            "defaultValue": "PT5M"
           },
           "LAWDailyCapLimitEvaluationFrequency": {
             "type": "String",
@@ -15632,7 +15632,7 @@
               "PT6H",
               "P1D"
             ],
-            "defaultValue": "P5M"
+            "defaultValue": "PT5M"
           },
           "LAWDailyCapLimitEvaluationFrequency": {
             "type": "String",
@@ -18619,7 +18619,7 @@
           },
           "VPNGWTunnelIngressPacketDropCountFailingPeriods": {
             "type": "string",
-            "defaultValue": "4",
+            "defaultValue": "2",
             "metadata": {
               "displayName": "VPN GW Tunnel Ingress Packet Drop Count Failing Periods",
               "description": "Number of failing periods before alert is fired"
@@ -18627,7 +18627,7 @@
           },
           "VPNGWTunnelIngressPacketDropCountEvaluationPeriods": {
             "type": "string",
-            "defaultValue": "4",
+            "defaultValue": "2",
             "metadata": {
               "displayName": "VPN GW Tunnel Ingress Packet Drop Count Evaluation Periods",
               "description": "The number of aggregated lookback points."
@@ -18703,7 +18703,7 @@
           },
           "VPNGWTunnelIngressPacketDropMismatchFailingPeriods": {
             "type": "string",
-            "defaultValue": "4",
+            "defaultValue": "2",
             "metadata": {
               "displayName": "VPN GW Tunnel Ingress Packet Drop Mismatch Failing Periods",
               "description": "Number of failing periods before alert is fired"
@@ -18711,7 +18711,7 @@
           },
           "VPNGWTunnelIngressPacketDropMismatchEvaluationPeriods": {
             "type": "string",
-            "defaultValue": "4",
+            "defaultValue": "2",
             "metadata": {
               "displayName": "VPN GW Tunnel Ingress Packet Drop Mismatch Evaluation Periods",
               "description": "The number of aggregated lookback points."
@@ -23094,7 +23094,7 @@
           },
           "P2SVPNGatewaysP2SBandwidthThreshold": {
             "type": "string",
-            "defaultValue": "9900",
+            "defaultValue": "1",
             "metadata": {
               "displayName": "P2S VPN Gateways P2S Bandwidth Threshold",
               "description": "Threshold for the alert"
@@ -23168,7 +23168,7 @@
           },
           "P2SVPNGatewaysP2SConnectionCountThreshold": {
             "type": "string",
-            "defaultValue": "99000",
+            "defaultValue": "1",
             "metadata": {
               "displayName": "P2S VPN Gateways P2S Connection Count Threshold",
               "description": "Threshold for the alert"
@@ -23242,7 +23242,7 @@
           },
           "P2SVPNGatewaysUserVpnRouteCountThreshold": {
             "type": "string",
-            "defaultValue": "9900",
+            "defaultValue": "1",
             "metadata": {
               "displayName": "P2S VPN Gateways User Vpn Route Count Threshold",
               "description": "Threshold for the alert"

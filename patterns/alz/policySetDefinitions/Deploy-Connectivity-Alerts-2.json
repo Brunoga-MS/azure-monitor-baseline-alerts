@@ -330,7 +330,7 @@
       },
       "P2SVPNGatewaysP2SBandwidthThreshold": {
         "type": "string",
-        "defaultValue": "9900",
+        "defaultValue": "1",
         "metadata": {
           "displayName": "P2S VPN Gateways P2S Bandwidth Threshold",
           "description": "Threshold for the alert"
@@ -404,7 +404,7 @@
       },
       "P2SVPNGatewaysP2SConnectionCountThreshold": {
         "type": "string",
-        "defaultValue": "99000",
+        "defaultValue": "1",
         "metadata": {
           "displayName": "P2S VPN Gateways P2S Connection Count Threshold",
           "description": "Threshold for the alert"
@@ -478,7 +478,7 @@
       },
       "P2SVPNGatewaysUserVpnRouteCountThreshold": {
         "type": "string",
-        "defaultValue": "9900",
+        "defaultValue": "1",
         "metadata": {
           "displayName": "P2S VPN Gateways User Vpn Route Count Threshold",
           "description": "Threshold for the alert"
