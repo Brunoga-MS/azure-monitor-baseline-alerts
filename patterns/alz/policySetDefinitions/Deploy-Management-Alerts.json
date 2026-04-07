@@ -6,7 +6,7 @@
     "displayName": "Deploy Azure Monitor Baseline Alerts (AMBA-ALZ) for Management",
     "description": "This initiative deploys Azure Monitor Baseline Alerts (AMBA-ALZ) to monitor the management resources including Automation Account, Storage Account, Recovery Vault, and Log Analytics Workspace",
     "metadata": {
-      "version": "1.5.0",
+      "version": "1.6.0",
       "category": "Monitoring",
       "source": "https://github.com/Azure/azure-monitor-baseline-alerts/",
       "alzCloudEnvironments": [
@@ -336,7 +336,7 @@
           "3",
           "4"
         ],
-        "defaultValue": "2"
+        "defaultValue": "1"
       },
       "LAWDailyCapLimitOperator": {
         "type": "String",
@@ -380,7 +380,7 @@
           "PT6H",
           "P1D"
         ],
-        "defaultValue": "P1D"
+        "defaultValue": "P5M"
       },
       "LAWDailyCapLimitEvaluationFrequency": {
         "type": "String",
@@ -402,7 +402,7 @@
           "PT6H",
           "P1D"
         ],
-        "defaultValue": "PT1H"
+        "defaultValue": "PT5M"
       },
       "LAWDailyCapLimitAutoMitigate": {
         "type": "String",

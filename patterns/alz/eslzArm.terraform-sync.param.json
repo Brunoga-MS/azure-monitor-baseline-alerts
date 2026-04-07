@@ -3681,13 +3681,13 @@
           "value": "deployIfNotExists"
         },
         "AppInsightsThrottlingLimitAlertState": {
-          "value": "false"
+          "value": "true"
         },
         "activityAppInsightsDeletePolicyEffect": {
           "value": "deployIfNotExists"
         },
         "activityAppInsightsDeleteAlertState": {
-          "value": "false"
+          "value": "true"
         },
         "activityLAWDeletePolicyEffect": {
           "value": "deployIfNotExists"

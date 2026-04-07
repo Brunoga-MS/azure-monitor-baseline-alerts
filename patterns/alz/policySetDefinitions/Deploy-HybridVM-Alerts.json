@@ -6,7 +6,7 @@
     "displayName": "Deploy Azure Monitor Baseline Alerts (AMBA-ALZ) for Azure Arc-enabled servers",
     "description": "This initiative deploys Azure Monitor Baseline Alerts (AMBA-ALZ) to monitor Azure Arc-enabled servers.",
     "metadata": {
-      "version": "1.3.0",
+      "version": "1.4.0",
       "category": "Monitoring",
       "source": "https://github.com/Azure/azure-monitor-baseline-alerts/",
       "alzCloudEnvironments": [
@@ -102,7 +102,7 @@
       },
       "HybridVMHeartBeatRGWindowSize": {
         "type": "string",
-        "defaultValue": "PT15M",
+        "defaultValue": "PT6H",
         "allowedValues": [
           "PT1M",
           "PT5M",
@@ -764,7 +764,7 @@
       },
       "HybridVMOSDiskWriteLatencyThreshold": {
         "type": "string",
-        "defaultValue": "50",
+        "defaultValue": "30",
         "metadata": {
           "displayName": "Arc-Enabled Servers OS Disk Write Latency Threshold",
           "description": "Threshold for the alert"

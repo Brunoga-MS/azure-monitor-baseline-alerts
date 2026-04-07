@@ -8,7 +8,7 @@
     "displayName": "Deploy Azure Monitor Baseline Alerts (AMBA-ALZ) - PIP VIP Availability Alert",
     "description": "Policy to audit/deploy PIP VIP Availability Alert",
     "metadata": {
-      "version": "1.4.1",
+      "version": "1.5.0",
       "category": "Network",
       "source": "https://github.com/Azure/azure-monitor-baseline-alerts/",
       "alzCloudEnvironments": [
@@ -95,7 +95,7 @@
           "displayName": "Threshold",
           "description": "Threshold for the alert"
         },
-        "defaultValue": "90"
+        "defaultValue": "1"
       },
       "effect": {
         "type": "String",

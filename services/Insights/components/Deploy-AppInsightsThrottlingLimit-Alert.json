@@ -8,7 +8,7 @@
     "displayName": "Deploy Azure Monitor Baseline Alerts (AMBA-ALZ) - Application Insights Throttling Limit Reached Alert",
     "description": "Policy to audit/deploy Application Insights Throttling Limit Reached Alert",
     "metadata": {
-      "version": "1.4.1",
+      "version": "1.5.0",
       "category": "Monitoring",
       "source": "https://github.com/Azure/azure-monitor-baseline-alerts/",
       "alzCloudEnvironments": [
@@ -39,7 +39,7 @@
           "3",
           "4"
         ],
-        "defaultValue": "2"
+        "defaultValue": "1"
       },
       "operator": {
         "type": "String",
@@ -83,7 +83,7 @@
           "PT6H",
           "P1D"
         ],
-        "defaultValue": "P1D"
+        "defaultValue": "PT5M"
       },
       "evaluationFrequency": {
         "type": "String",
@@ -105,7 +105,7 @@
           "PT6H",
           "P1D"
         ],
-        "defaultValue": "PT1H"
+        "defaultValue": "PT5M"
       },
       "autoMitigate": {
         "type": "String",
