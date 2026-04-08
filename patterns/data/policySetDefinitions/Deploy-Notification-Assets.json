@@ -1,0 +1,251 @@
+{
+  "type": "Microsoft.Authorization/policySetDefinitions",
+  "apiVersion": "2021-06-01",
+  "name": "Data-Notification-Assets",
+  "properties": {
+    "displayName": "Deploy Azure Monitor Baseline Alerts (AMBA-DATA) - Notification Assets",
+    "description": "This initiative deploys Notification Assets for Azure Monitor Baseline Alerts (AMBA-DATA). This includes the setup of an Alert Processing Rule and an Action Group to manage notifications and actions, along with a Notification Suppression Rule to manage alert notifications, as well as a Notification Suppression Rule to control alert notifications.",
+    "metadata": {
+      "version": "1.0.0",
+      "category": "Monitoring",
+      "source": "https://github.com/Azure/azure-monitor-baseline-alerts/",
+      "alzCloudEnvironments": [
+        "AzureCloud"
+      ],
+      "_deployed_by_amba": true
+    },
+    "parameters": {
+      "DataMonitorResourceGroupName": {
+        "type": "String",
+        "defaultValue": "rg-amba-monitoring-001",
+        "metadata": {
+          "displayName": "Resource Group Name",
+          "description": "Name of the resource group to deploy the alerts to"
+        }
+      },
+      "DataMonitorResourceGroupTags": {
+        "type": "Object",
+        "defaultValue": {
+          "_deployed_by_Data_monitor": true
+        },
+        "metadata": {
+          "displayName": "Resource Group Tags",
+          "description": "Tags to apply to the resource group"
+        }
+      },
+      "DataMonitorResourceGroupLocation": {
+        "type": "String",
+        "defaultValue": "centralus",
+        "metadata": {
+          "displayName": "Resource Group Location",
+          "description": "Location of the resource group"
+        }
+      },
+      "DataMonitorActionGroupEmail": {
+        "type": "Array",
+        "metadata": {
+          "displayName": "Action Group Email Addresses",
+          "description": "Email addresses to send alerts to"
+        },
+        "defaultValue": []
+      },
+      "DataMonitorDisableTagName": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Data Monitoring disabled tag name",
+          "description": "Tag name used to disable monitoring at the resource level. Set to true if monitoring should be disabled."
+        },
+        "defaultValue": "MonitorDisable"
+      },
+      "DataMonitorDisableTagValues": {
+        "type": "Array",
+        "metadata": {
+          "displayName": "Data Monitoring disabled tag values(s)",
+          "description": "Tag value(s) used to disable monitoring at the resource level. Set to true if monitoring should be disabled."
+        },
+        "defaultValue": [
+          "true",
+          "Test",
+          "Dev",
+          "Sandbox"
+        ]
+      },
+      "DataMonitorLogicappResourceId": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Logic App Resource Id",
+          "description": "Logic App Resource Id for Action Group to send alerts to"
+        },
+        "defaultValue": ""
+      },
+      "DataMonitorLogicappCallbackUrl": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Logic App Callback URL",
+          "description": "Callback URL that triggers the Logic App"
+        },
+        "defaultValue": ""
+      },
+      "DataMonitorArmRoleId": {
+        "type": "array",
+        "metadata": {
+          "displayName": "Arm Role Ids",
+          "description": "Arm Built-in Role Ids for action group to send alerts to"
+        },
+        "defaultValue": []
+      },
+      "DataMonitorEventHubResourceId": {
+        "type": "array",
+        "metadata": {
+          "displayName": "Event Hub resource Ids",
+          "description": "Event Hub resource Ids for action group to send alerts to"
+        },
+        "defaultValue": []
+      },
+      "DataMonitorWebhookServiceUri": {
+        "type": "Array",
+        "metadata": {
+          "displayName": "Webhook Service Uri(s)",
+          "description": "Indicates the service uri(s) of the webhook to send alerts to"
+        },
+        "defaultValue": []
+      },
+      "DataMonitorFunctionResourceId": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Function Resource Id",
+          "description": "Function Resource Id for Action Group to send alerts to"
+        },
+        "defaultValue": ""
+      },
+      "DataMonitorFunctionTriggerUrl": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Function Trigger URL",
+          "description": "URL that triggers the Function"
+        },
+        "defaultValue": ""
+      },
+      "DataMonitorNotificationAssetSuffix": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Notification Asset Name Suffix",
+          "description": "Suffix for Alert Processing Rule and Action Group names"
+        },
+        "defaultValue": "Data-001"
+      },
+      "DataMonitorAlertSeverity": {
+        "type": "Array",
+        "metadata": {
+          "displayName": "Alert Severities for Alert Processing Rule",
+          "description": "Severity of the alerts to apply action groups. Will apply to all severities if not specified."
+        },
+        "defaultValue": [
+          "Sev0",
+          "Sev1",
+          "Sev2",
+          "Sev3",
+          "Sev4"
+        ]
+      },
+      "BYOActionGroup": {
+        "type": "array",
+        "metadata": {
+          "displayName": "Customer defined Action Group Resource IDs",
+          "description": "The Resource IDs of existing Action Groups currently deployed in the environment."
+        },
+        "defaultValue": []
+      },
+      "BYOAlertProcessingRule": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Customer defined Alert Processing Rule Resource ID",
+          "description": "The Resource ID of an existing Alert Processing Rule already deployed by the customer in his environment"
+        },
+        "defaultValue": ""
+      }
+    },
+    "policyDefinitions": [
+      {
+        "policyDefinitionReferenceId": "ALZ_AlertProcessing_Rule",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/contoso/providers/Microsoft.Authorization/policyDefinitions/Deploy_AlertProcessing_Rule",
+        "parameters": {
+          "ALZMonitorResourceGroupName": {
+            "value": "[[parameters('DataMonitorMonitorResourceGroupName')]"
+          },
+          "ALZMonitorResourceGroupTags": {
+            "value": "[[parameters('DataMonitorMonitorResourceGroupTags')]"
+          },
+          "ALZMonitorResourceGroupLocation": {
+            "value": "[[parameters('DataMonitorMonitorResourceGroupLocation')]"
+          },
+          "ALZMonitorActionGroupEmail": {
+            "value": "[[parameters('DataMonitorMonitorActionGroupEmail')]"
+          },
+          "ALZLogicappResourceId": {
+            "value": "[[parameters('DataMonitorLogicappResourceId')]"
+          },
+          "ALZLogicappCallbackUrl": {
+            "value": "[[parameters('DataMonitorLogicappCallbackUrl')]"
+          },
+          "ALZArmRoleId": {
+            "value": "[[parameters('DataMonitorArmRoleId')]"
+          },
+          "ALZEventHubResourceId": {
+            "value": "[[parameters('DataMonitorEventHubResourceId')]"
+          },
+          "ALZWebhookServiceUri": {
+            "value": "[[parameters('DataMonitorWebhookServiceUri')]"
+          },
+          "ALZFunctionResourceId": {
+            "value": "[[parameters('DataMonitorFunctionResourceId')]"
+          },
+          "ALZFunctionTriggerUrl": {
+            "value": "[[parameters('DataMonitorFunctionTriggerUrl')]"
+          },
+          "ALZNotificationAssetSuffix": {
+            "value": "[[parameters('DataMonitorNotificationAssetSuffix')]"
+          },
+          "ALZAlertSeverity": {
+            "value": "[[parameters('DataMonitorAlertSeverity')]"
+          },
+          "BYOActionGroup": {
+            "value": "[[parameters('BYOActionGroup')]"
+          },
+          "BYOAlertProcessingRule": {
+            "value": "[[parameters('BYOAlertProcessingRule')]"
+          },
+          "MonitorDisableTagName": {
+            "value": "[[parameters('DataMonitorMonitorDisableTagName')]"
+          },
+          "MonitorDisableTagValues": {
+            "value": "[[parameters('DataMonitorMonitorDisableTagValues')]"
+          }
+        }
+      },
+      {
+        "policyDefinitionReferenceId": "ALZ_Suppression_AlertProcessing_Rule",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/contoso/providers/Microsoft.Authorization/policyDefinitions/Deploy_Suppression_AlertProcessing_Rule",
+        "parameters": {
+          "ALZMonitorResourceGroupName": {
+            "value": "[[parameters('DataMonitorMonitorResourceGroupName')]"
+          },
+          "ALZMonitorResourceGroupTags": {
+            "value": "[[parameters('DataMonitorMonitorResourceGroupTags')]"
+          },
+          "ALZMonitorResourceGroupLocation": {
+            "value": "[[parameters('DataMonitorMonitorResourceGroupLocation')]"
+          },
+          "MonitorDisableTagName": {
+            "value": "[[parameters('DataMonitorMonitorDisableTagName')]"
+          },
+          "MonitorDisableTagValues": {
+            "value": "[[parameters('DataMonitorMonitorDisableTagValues')]"
+          }
+        }
+      }
+    ],
+    "policyType": "Custom",
+    "policyDefinitionGroups": null
+  }
+}

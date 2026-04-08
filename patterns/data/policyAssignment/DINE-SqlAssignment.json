@@ -1,0 +1,93 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-08-01/managementGroupDeploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "topLevelManagementGroupPrefix": {
+      "type": "string",
+      "metadata": {
+        "description": "Provide the ESLZ prefix to your intermediate root management group containing the policy definitions."
+      }
+    },
+    "enforcementMode": {
+      "type": "string",
+      "allowedValues": [
+        "Default",
+        "DoNotEnforce"
+      ],
+      "defaultValue": "Default"
+    },
+    "nonComplianceMessagePlaceholder": {
+      "type": "string",
+      "defaultValue": "{enforcementMode}"
+    },
+    "policyAssignmentParameters": {
+      "type": "object",
+      "defaultValue": {}
+    },
+    "policyAssignmentExclusions": {
+      "type": "array",
+      "defaultValue": []
+    }
+  },
+  "variables": {
+    "policyDefinitions": {
+      "deployAMBASql": "[concat('/providers/Microsoft.Management/managementGroups/', parameters('topLevelManagementGroupPrefix'), '/providers/Microsoft.Authorization/policySetDefinitions/Alerting-Sql')]"
+    },
+    "policyAssignmentNames": {
+      "ambaSQL": "Deploy-AMBA-Sql",
+      "description": "This initiative deploys Azure Monitor Baseline Alerts (AMBA-DATA) to monitor SQL Managed Instances and Servers.",
+      "displayName": "Deploy Azure Monitor Baseline Alerts (AMBA-DATA) for SQL Managed Instances and Servers"
+    },
+    "nonComplianceMessage": {
+      "message": "Alerting {enforcementMode} be deployed to Azure services.",
+      "Default": "must",
+      "DoNotEnforce": "should"
+    },
+    "rbacMonitoringPolicyContributor ": "47be4a87-7950-4631-9daf-b664a405f074", // Monitoring Policy Contributor
+    "roleAssignmentNames": {
+      "deployAMBASql": "[guid(concat(parameters('topLevelManagementGroupPrefix'), variables('policyAssignmentNames').ambaSQL))]"
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Authorization/policyAssignments",
+      "apiVersion": "2020-09-01",
+      "name": "[variables('policyAssignmentNames').ambaSQL]",
+      "location": "[deployment().location]",
+      "identity": {
+        "type": "SystemAssigned"
+      },
+      "properties": {
+        "description": "[variables('policyAssignmentNames').description]",
+        "displayName": "[variables('policyAssignmentNames').displayName]",
+        "policyDefinitionId": "[variables('policyDefinitions').deployAMBASql]",
+        "enforcementMode": "[parameters('enforcementMode')]",
+        "nonComplianceMessages": [
+          {
+            "message": "[replace(variables('nonComplianceMessage').message, parameters('nonComplianceMessagePlaceholder'), variables('nonComplianceMessage')[parameters('enforcementMode')])]"
+          }
+        ],
+        "notScopes": "[parameters('policyAssignmentExclusions')]",
+        "parameters": "[parameters('policyAssignmentParameters')]",
+        "metadata": {
+          "_deployed_by_amba_data": true
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Authorization/roleAssignments",
+      "apiVersion": "2022-04-01",
+      "name": "[variables('roleAssignmentNames').deployAMBASql]",
+      "dependsOn": [
+        "[variables('policyAssignmentNames').ambaSQL]"
+      ],
+      "properties": {
+        "principalType": "ServicePrincipal",
+        "roleDefinitionId": "[concat('/providers/Microsoft.Authorization/roleDefinitions/', variables('rbacMonitoringPolicyContributor '))]",
+        "principalId": "[toLower(reference(concat('/providers/Microsoft.Authorization/policyAssignments/', variables('policyAssignmentNames').ambaSQL), '2019-09-01', 'Full' ).identity.principalId)]",
+        "description": "_deployed_by_amba_data"
+      }
+    }
+  ],
+  "outputs": {}
+}

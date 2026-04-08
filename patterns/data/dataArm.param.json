@@ -1,0 +1,235 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "enterpriseScaleCompanyPrefix": {
+      "value": "contoso"
+    },
+    "managementManagementGroup": {
+      "value": "contoso-management"
+    },
+    "landingZoneManagementGroup": {
+      "value": "contoso-landingzones"
+    },
+    "enableAMBASql": {
+      "value": "Yes"
+    },
+    "enableAMBAOssDb": {
+      "value": "Yes"
+    },
+    "enableAMBANotificationAssets": {
+      "value": "Yes"
+    },
+    "DataMonitorResourceGroupName": {
+      "value": "rg-amba-monitoring-001"
+    },
+    "DataMonitorResourceGroupLocation": {
+      "value": "eastus"
+    },
+    "DataMonitorResourceGroupTags": {
+      "value": {
+        "_deployed_by_amba_data": true
+      }
+    },
+    "DataMonitorDisableTagName": {
+      "value": "MonitorDisable"
+    },
+    "DataMonitorDisableTagValues": {
+      "value": [
+        "true",
+        "Test",
+        "Dev",
+        "Sandbox"
+      ]
+    },
+    "DataMonitorActionGroupEmail": {
+      "value": []
+    },
+    "DataMonitorLogicappResourceId": {
+      "value": ""
+    },
+    "DataMonitorLogicappCallbackUrl": {
+      "value": ""
+    },
+    "DataMonitorArmRoleId": {
+      "value": []
+    },
+    "DataMonitorEventHubResourceId": {
+      "value": []
+    },
+    "DataMonitorWebhookServiceUri": {
+      "value": []
+    },
+    "DataMonitorFunctionResourceId": {
+      "value": ""
+    },
+    "DataMonitorFunctionTriggerUrl": {
+      "value": ""
+    },
+    "DataMonitorNotificationAssetSuffix": {
+      "value": "Data-001"
+    },
+    "DataMonitorAlertSeverity": {
+      "value": [
+        "Sev0",
+        "Sev1",
+        "Sev2",
+        "Sev3",
+        "Sev4"
+      ]
+    },
+    "DataMonitorBYOActionGroup": {
+      "value": []
+    },
+    "DataMonitorAlertProcessingRule": {
+      "value": ""
+    },
+    "policyAssignmentExclusionList": {
+      "value": {
+        "notificationAssetsAssignmentExcludedResources": {
+          "value": []
+        },
+        "SqlAssignmentExcludedResources": {
+          "value": []
+        },
+        "OssDBAssignmentExcludedResources": {
+          "value": []
+        }
+      }
+    },
+    "policyAssignmentParametersSql": {
+      "value": {
+        "SqlMI_AvgCpuPercent_AlertSeverity": {
+          "value": "2"
+        },
+        "SqlMI_AvgCpuPercent_AlertWindowSize": {
+          "value": "PT5M"
+        },
+        "SqlMI_AvgCpuPercent_AlertEvaluationFrequency": {
+          "value": "PT1M"
+        },
+        "SqlMI_AvgCpuPercent_AlertAutoMitigate": {
+          "value": "true"
+        },
+        "SqlMI_AvgCpuPercent_AlertEnabled": {
+          "value": "true"
+        },
+        "SqlMI_AvgCpuPercent_AlertThreshold": {
+          "value": "80"
+        },
+        "SqlMI_AvgCpuPercent_AlertEffect": {
+          "value": "deployIfNotExists"
+        },
+        "SqlMI_StorageSpaceUsedMb_AlertSeverity": {
+          "value": "2"
+        },
+        "SqlMI_StorageSpaceUsedMb_AlertWindowSize": {
+          "value": "PT5M"
+        },
+        "SqlMI_StorageSpaceUsedMb_AlertEvaluationFrequency": {
+          "value": "PT1M"
+        },
+        "SqlMI_StorageSpaceUsedMb_AlertAutoMitigate": {
+          "value": "true"
+        },
+        "SqlMI_StorageSpaceUsedMb_AlertEnabled": {
+          "value": "true"
+        },
+        "SqlMI_StorageSpaceUsedMb_AlertThreshold": {
+          "value": "80"
+        },
+        "SqlMI_StorageSpaceUsedMb_AlertEffect": {
+          "value": "deployIfNotExists"
+        }
+      }
+    },
+    "policyAssignmentParametersOssDB": {
+      "value": {
+        "MariaDB_CpuPercent_AlertSeverity": {
+          "value": "2"
+        },
+        "MariaDB_CpuPercent_AlertWindowSize": {
+          "value": "PT5M"
+        },
+        "MariaDB_CpuPercent_AlertEvaluationFrequency": {
+          "value": "PT1M"
+        },
+        "MariaDB_CpuPercent_AlertAutoMitigate": {
+          "value": "true"
+        },
+        "MariaDB_CpuPercent_AlertEnabled": {
+          "value": "true"
+        },
+        "MariaDB_CpuPercent_AlertThreshold": {
+          "value": "80"
+        },
+        "MariaDB_CpuPercent_AlertEffect": {
+          "value": "deployIfNotExists"
+        },
+        "MariaDB_IOConsumption_AlertSeverity": {
+          "value": "2"
+        },
+        "MariaDB_IOConsumption_AlertWindowSize": {
+          "value": "PT5M"
+        },
+        "MariaDB_IOConsumption_AlertEvaluationFrequency": {
+          "value": "PT1M"
+        },
+        "MariaDB_IOConsumption_AlertAutoMitigate": {
+          "value": "true"
+        },
+        "MariaDB_IOConsumption_AlertEnabled": {
+          "value": "true"
+        },
+        "MariaDB_IOConsumption_AlertThreshold": {
+          "value": "80"
+        },
+        "MariaDB_IOConsumption_AlertEffect": {
+          "value": "deployIfNotExists"
+        },
+        "MariaDB_MemoryPercent_AlertSeverity": {
+          "value": "2"
+        },
+        "MariaDB_MemoryPercent_AlertWindowSize": {
+          "value": "PT5M"
+        },
+        "MariaDB_MemoryPercent_AlertEvaluationFrequency": {
+          "value": "PT1M"
+        },
+        "MariaDB_MemoryPercent_AlertAutoMitigate": {
+          "value": "true"
+        },
+        "MariaDB_MemoryPercent_AlertEnabled": {
+          "value": "true"
+        },
+        "MariaDB_MemoryPercent_AlertThreshold": {
+          "value": "80"
+        },
+        "MariaDB_MemoryPercent_AlertEffect": {
+          "value": "deployIfNotExists"
+        }      ,
+        "MariaDB_StoragePercent_AlertSeverity": {
+          "value": "2"
+        },
+        "MariaDB_StoragePercent_AlertWindowSize": {
+          "value": "PT5M"
+        },
+        "MariaDB_StoragePercent_AlertEvaluationFrequency": {
+          "value": "PT1M"
+        },
+        "MariaDB_StoragePercent_AlertAutoMitigate": {
+          "value": "true"
+        },
+        "MariaDB_StoragePercent_AlertEnabled": {
+          "value": "true"
+        },
+        "MariaDB_StoragePercent_AlertThreshold": {
+          "value": "80"
+        },
+        "MariaDB_StoragePercent_AlertEffect": {
+          "value": "deployIfNotExists"
+        }
+      }
+    }
+  }
+}

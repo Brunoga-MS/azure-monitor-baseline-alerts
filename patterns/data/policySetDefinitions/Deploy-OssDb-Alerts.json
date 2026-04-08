@@ -1,0 +1,571 @@
+{
+  "type": "Microsoft.Authorization/policySetDefinitions",
+  "apiVersion": "2021-06-01",
+  "name": "Alerting-OssDB",
+  "properties": {
+    "displayName": "[Preview]: Deploy Azure Monitor Baseline Alerts (AMBA-DATA) for Open Source Databases",
+    "description": "This initiative deploys Azure Monitor Baseline Alerts (AMBA-DATA) to monitor Open Source Databases.",
+    "metadata": {
+      "version": "1.0.0-preview",
+      "category": "Monitoring",
+      "source": "https://github.com/Azure/azure-monitor-baseline-alerts/",
+      "alzCloudEnvironments": [
+        "AzureCloud"
+      ],
+      "_deployed_by_amba_data": true
+    },
+    "parameters": {
+      "DataMonitorResourceGroupName": {
+        "type": "String",
+        "defaultValue": "rg-amba-monitoring-001",
+        "metadata": {
+          "displayName": "AMBA Monitor Resource Group Name",
+          "description": "Name of the resource group where the AMBA Monitor resources will be deployed"
+        }
+      },
+      "DataMonitorResourceGroupTags": {
+        "type": "Object",
+        "defaultValue": {
+          "_deployed_by_amba": true
+        },
+        "metadata": {
+          "displayName": "AMBA Monitor Resource Group Tags",
+          "description": "Tags for the resource group where the AMBA Monitor resources will be deployed"
+        }
+      },
+      "DataMonitorResourceGroupLocation": {
+        "type": "String",
+        "defaultValue": "centralus",
+        "metadata": {
+          "displayName": "AMBA Monitor Resource Group Location",
+          "description": "Location of the resource group where the AMBA Monitor resources will be deployed"
+        }
+      },
+      "DataMonitorDisableTagName": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Monitoring disabled tag name",
+          "description": "Tag name used to disable monitoring at the resource level. Set to true if monitoring should be disabled."
+        },
+        "defaultValue": "MonitorDisable"
+      },
+      "DataMonitorDisableTagValues": {
+        "type": "Array",
+        "metadata": {
+          "displayName": "Monitoring disabled tag values(s)",
+          "description": "Tag value(s) used to disable monitoring at the resource level. Set to true if monitoring should be disabled."
+        },
+        "defaultValue": [
+          "true",
+          "Test",
+          "Dev",
+          "Sandbox"
+        ]
+      },
+      "MariaDB_CpuPercent_AlertSeverity": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Severity",
+          "description": "Severity of the Alert"
+        },
+        "allowedValues": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "defaultValue": "2"
+      },
+      "MariaDB_CpuPercent_AlertWindowSize": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Window Size",
+          "description": "Window size for the alert"
+        },
+        "allowedValues": [
+          "PT1M",
+          "PT5M",
+          "PT15M",
+          "PT30M",
+          "PT1H",
+          "PT6H",
+          "PT12H",
+          "P1D"
+        ],
+        "defaultValue": "PT5M"
+      },
+      "MariaDB_CpuPercent_AlertEvaluationFrequency": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Evaluation Frequency",
+          "description": "Evaluation frequency for the alert"
+        },
+        "allowedValues": [
+          "PT1M",
+          "PT5M",
+          "PT15M",
+          "PT30M",
+          "PT1H"
+        ],
+        "defaultValue": "PT1M"
+      },
+      "MariaDB_CpuPercent_AlertAutoMitigate": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Auto Mitigate",
+          "description": "Auto Mitigate for the alert"
+        },
+        "allowedValues": [
+          "true",
+          "false"
+        ],
+        "defaultValue": "true"
+      },
+      "MariaDB_CpuPercent_AlertEnabled": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Alert State",
+          "description": "Alert state for the alert"
+        },
+        "allowedValues": [
+          "true",
+          "false"
+        ],
+        "defaultValue": "true"
+      },
+      "MariaDB_CpuPercent_AlertThreshold": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Threshold",
+          "description": "Threshold for the alert"
+        },
+        "defaultValue": "80"
+      },
+      "MariaDB_CpuPercent_AlertEffect": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Effect",
+          "description": "Effect of the policy"
+        },
+        "allowedValues": [
+          "deployIfNotExists",
+          "disabled"
+        ],
+        "defaultValue": "deployIfNotExists"
+      },
+      "MariaDB_IOConsumption_AlertSeverity": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Severity",
+          "description": "Severity of the Alert"
+        },
+        "allowedValues": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "defaultValue": "2"
+      },
+      "MariaDB_IOConsumption_AlertWindowSize": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Window Size",
+          "description": "Window size for the alert"
+        },
+        "allowedValues": [
+          "PT1M",
+          "PT5M",
+          "PT15M",
+          "PT30M",
+          "PT1H",
+          "PT6H",
+          "PT12H",
+          "P1D"
+        ],
+        "defaultValue": "PT5M"
+      },
+      "MariaDB_IOConsumption_AlertEvaluationFrequency": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Evaluation Frequency",
+          "description": "Evaluation frequency for the alert"
+        },
+        "allowedValues": [
+          "PT1M",
+          "PT5M",
+          "PT15M",
+          "PT30M",
+          "PT1H"
+        ],
+        "defaultValue": "PT1M"
+      },
+      "MariaDB_IOConsumption_AlertAutoMitigate": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Auto Mitigate",
+          "description": "Auto Mitigate for the alert"
+        },
+        "allowedValues": [
+          "true",
+          "false"
+        ],
+        "defaultValue": "true"
+      },
+      "MariaDB_IOConsumption_AlertEnabled": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Alert State",
+          "description": "Alert state for the alert"
+        },
+        "allowedValues": [
+          "true",
+          "false"
+        ],
+        "defaultValue": "true"
+      },
+      "MariaDB_IOConsumption_AlertThreshold": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Threshold",
+          "description": "Threshold for the alert"
+        },
+        "defaultValue": "80"
+      },
+      "MariaDB_IOConsumption_AlertEffect": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Effect",
+          "description": "Effect of the policy"
+        },
+        "allowedValues": [
+          "deployIfNotExists",
+          "disabled"
+        ],
+        "defaultValue": "deployIfNotExists"
+      },
+      "MariaDB_MemoryPercent_AlertSeverity": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Severity",
+          "description": "Severity of the Alert"
+        },
+        "allowedValues": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "defaultValue": "2"
+      },
+      "MariaDB_MemoryPercent_AlertWindowSize": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Window Size",
+          "description": "Window size for the alert"
+        },
+        "allowedValues": [
+          "PT1M",
+          "PT5M",
+          "PT15M",
+          "PT30M",
+          "PT1H",
+          "PT6H",
+          "PT12H",
+          "P1D"
+        ],
+        "defaultValue": "PT5M"
+      },
+      "MariaDB_MemoryPercent_AlertEvaluationFrequency": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Evaluation Frequency",
+          "description": "Evaluation frequency for the alert"
+        },
+        "allowedValues": [
+          "PT1M",
+          "PT5M",
+          "PT15M",
+          "PT30M",
+          "PT1H"
+        ],
+        "defaultValue": "PT1M"
+      },
+      "MariaDB_MemoryPercent_AlertAutoMitigate": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Auto Mitigate",
+          "description": "Auto Mitigate for the alert"
+        },
+        "allowedValues": [
+          "true",
+          "false"
+        ],
+        "defaultValue": "true"
+      },
+      "MariaDB_MemoryPercent_AlertEnabled": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Alert State",
+          "description": "Alert state for the alert"
+        },
+        "allowedValues": [
+          "true",
+          "false"
+        ],
+        "defaultValue": "true"
+      },
+      "MariaDB_MemoryPercent_AlertThreshold": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Threshold",
+          "description": "Threshold for the alert"
+        },
+        "defaultValue": "80"
+      },
+      "MariaDB_MemoryPercent_AlertEffect": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Effect",
+          "description": "Effect of the policy"
+        },
+        "allowedValues": [
+          "deployIfNotExists",
+          "disabled"
+        ],
+        "defaultValue": "deployIfNotExists"
+      }      ,
+      "MariaDB_StoragePercent_AlertSeverity": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Severity",
+          "description": "Severity of the Alert"
+        },
+        "allowedValues": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "defaultValue": "2"
+      },
+      "MariaDB_StoragePercent_AlertWindowSize": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Window Size",
+          "description": "Window size for the alert"
+        },
+        "allowedValues": [
+          "PT1M",
+          "PT5M",
+          "PT15M",
+          "PT30M",
+          "PT1H",
+          "PT6H",
+          "PT12H",
+          "P1D"
+        ],
+        "defaultValue": "PT5M"
+      },
+      "MariaDB_StoragePercent_AlertEvaluationFrequency": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Evaluation Frequency",
+          "description": "Evaluation frequency for the alert"
+        },
+        "allowedValues": [
+          "PT1M",
+          "PT5M",
+          "PT15M",
+          "PT30M",
+          "PT1H"
+        ],
+        "defaultValue": "PT1M"
+      },
+      "MariaDB_StoragePercent_AlertAutoMitigate": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Auto Mitigate",
+          "description": "Auto Mitigate for the alert"
+        },
+        "allowedValues": [
+          "true",
+          "false"
+        ],
+        "defaultValue": "true"
+      },
+      "MariaDB_StoragePercent_AlertEnabled": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Alert State",
+          "description": "Alert state for the alert"
+        },
+        "allowedValues": [
+          "true",
+          "false"
+        ],
+        "defaultValue": "true"
+      },
+      "MariaDB_StoragePercent_AlertThreshold": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Threshold",
+          "description": "Threshold for the alert"
+        },
+        "defaultValue": "80"
+      },
+      "MariaDB_StoragePercent_AlertEffect": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Effect",
+          "description": "Effect of the policy"
+        },
+        "allowedValues": [
+          "deployIfNotExists",
+          "disabled"
+        ],
+        "defaultValue": "deployIfNotExists"
+      }
+    },
+    "policyDefinitions": [
+      {
+        "policyDefinitionReferenceId": "DATA_MariaDB_CpuPercent",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/contoso/providers/Microsoft.Authorization/policyDefinitions/Deploy_MariaDb_CpuPercent_Alert",
+        "parameters": {
+          "severity": {
+            "value": "[[parameters('MariaDB_CpuPercent_AlertSeverity')]"
+          },
+          "windowSize": {
+            "value": "[[parameters('MariaDB_CpuPercent_AlertWindowSize')]"
+          },
+          "evaluationFrequency": {
+            "value": "[[parameters('MariaDB_CpuPercent_AlertEvaluationFrequency')]"
+          },
+          "autoMitigate": {
+            "value": "[[parameters('MariaDB_CpuPercent_AlertAutoMitigate')]"
+          },
+          "enabled": {
+            "value": "[[parameters('MariaDB_CpuPercent_AlertEnabled')]"
+          },
+          "threshold": {
+            "value": "[[parameters('MariaDB_CpuPercent_AlertThreshold')]"
+          },
+          "effect": {
+            "value": "[[parameters('MariaDB_CpuPercent_AlertEffect')]"
+          },
+          "MonitorDisableTagName": {
+            "value": "[[parameters('DataMonitorDisableTagName')]"
+          },
+          "MonitorDisableTagValues": {
+            "value": "[[parameters('DataMonitorDisableTagValues')]"
+          }
+        }
+      },
+      {
+        "policyDefinitionReferenceId": "DATA_MariaDB_IOConsumption",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/contoso/providers/Microsoft.Authorization/policyDefinitions/Deploy_MariaDb_IOConsumption_Alert",
+        "parameters": {
+          "severity": {
+            "value": "[[parameters('MariaDB_IOConsumption_AlertSeverity')]"
+          },
+          "windowSize": {
+            "value": "[[parameters('MariaDB_IOConsumption_AlertWindowSize')]"
+          },
+          "evaluationFrequency": {
+            "value": "[[parameters('MariaDB_IOConsumption_AlertEvaluationFrequency')]"
+          },
+          "autoMitigate": {
+            "value": "[[parameters('MariaDB_IOConsumption_AlertAutoMitigate')]"
+          },
+          "enabled": {
+            "value": "[[parameters('MariaDB_IOConsumption_AlertEnabled')]"
+          },
+          "threshold": {
+            "value": "[[parameters('MariaDB_IOConsumption_AlertThreshold')]"
+          },
+          "effect": {
+            "value": "[[parameters('MariaDB_IOConsumption_AlertEffect')]"
+          },
+          "MonitorDisableTagName": {
+            "value": "[[parameters('DataMonitorDisableTagName')]"
+          },
+          "MonitorDisableTagValues": {
+            "value": "[[parameters('DataMonitorDisableTagValues')]"
+          }
+        }
+      },
+      {
+        "policyDefinitionReferenceId": "DATA_MariaDB_MemoryPercent",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/contoso/providers/Microsoft.Authorization/policyDefinitions/Deploy_MariaDb_MemoryPercent_Alert",
+        "parameters": {
+          "severity": {
+            "value": "[[parameters('MariaDB_MemoryPercent_AlertSeverity')]"
+          },
+          "windowSize": {
+            "value": "[[parameters('MariaDB_MemoryPercent_AlertWindowSize')]"
+          },
+          "evaluationFrequency": {
+            "value": "[[parameters('MariaDB_MemoryPercent_AlertEvaluationFrequency')]"
+          },
+          "autoMitigate": {
+            "value": "[[parameters('MariaDB_MemoryPercent_AlertAutoMitigate')]"
+          },
+          "enabled": {
+            "value": "[[parameters('MariaDB_MemoryPercent_AlertEnabled')]"
+          },
+          "threshold": {
+            "value": "[[parameters('MariaDB_MemoryPercent_AlertThreshold')]"
+          },
+          "effect": {
+            "value": "[[parameters('MariaDB_MemoryPercent_AlertEffect')]"
+          },
+          "MonitorDisableTagName": {
+            "value": "[[parameters('DataMonitorDisableTagName')]"
+          },
+          "MonitorDisableTagValues": {
+            "value": "[[parameters('DataMonitorDisableTagValues')]"
+          }
+        }
+      },
+      {
+        "policyDefinitionReferenceId": "DATA_MariaDB_StoragePercent",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/contoso/providers/Microsoft.Authorization/policyDefinitions/Deploy_MariaDb_StoragePercent_Alert",
+        "parameters": {
+          "severity": {
+            "value": "[[parameters('MariaDB_StoragePercent_AlertSeverity')]"
+          },
+          "windowSize": {
+            "value": "[[parameters('MariaDB_StoragePercent_AlertWindowSize')]"
+          },
+          "evaluationFrequency": {
+            "value": "[[parameters('MariaDB_StoragePercent_AlertEvaluationFrequency')]"
+          },
+          "autoMitigate": {
+            "value": "[[parameters('MariaDB_StoragePercent_AlertAutoMitigate')]"
+          },
+          "enabled": {
+            "value": "[[parameters('MariaDB_StoragePercent_AlertEnabled')]"
+          },
+          "threshold": {
+            "value": "[[parameters('MariaDB_StoragePercent_AlertThreshold')]"
+          },
+          "effect": {
+            "value": "[[parameters('MariaDB_StoragePercent_AlertEffect')]"
+          },
+          "MonitorDisableTagName": {
+            "value": "[[parameters('DataMonitorDisableTagName')]"
+          },
+          "MonitorDisableTagValues": {
+            "value": "[[parameters('DataMonitorDisableTagValues')]"
+          }
+        }
+      }
+    ],
+    "policyType": "Custom",
+    "policyDefinitionGroups": null
+  }
+}

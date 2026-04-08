@@ -1,0 +1,312 @@
+{
+  "type": "Microsoft.Authorization/policySetDefinitions",
+  "apiVersion": "2021-06-01",
+  "name": "Alerting-SQL",
+  "properties": {
+    "displayName": "[Preview]: Deploy Azure Monitor Baseline Alerts (AMBA-DATA) for SQL Managed Instances and Servers",
+    "description": "This initiative deploys Azure Monitor Baseline Alerts (AMBA-DATA) to monitor SQL Managed Instances and Servers.",
+    "metadata": {
+      "version": "1.0.0-preview",
+      "category": "Monitoring",
+      "source": "https://github.com/Azure/azure-monitor-baseline-alerts/",
+      "alzCloudEnvironments": [
+        "AzureCloud"
+      ],
+      "_deployed_by_amba_data": true
+    },
+    "parameters": {
+      "DataMonitorResourceGroupName": {
+        "type": "String",
+        "defaultValue": "rg-amba-monitoring-001",
+        "metadata": {
+          "displayName": "AMBA Monitor Resource Group Name",
+          "description": "Name of the resource group where the alerting resources will be deployed"
+        }
+      },
+      "DataMonitorResourceGroupTags": {
+        "type": "Object",
+        "defaultValue": {
+          "_deployed_by_amba_data": true
+        },
+        "metadata": {
+          "displayName": "AMBA Monitor Resource Group Tags",
+          "description": "Tags for the resource group where the alerting resources will be deployed"
+        }
+      },
+      "DataMonitorResourceGroupLocation": {
+        "type": "String",
+        "defaultValue": "centralus",
+        "metadata": {
+          "displayName": "AMBA Monitor Resource Group Location",
+          "description": "Location of the resource group where the alerting resources will be deployed"
+        }
+      },
+      "DataMonitorDisableTagName": {
+        "type": "String",
+        "metadata": {
+          "displayName": "AMBA Monitoring disabled tag name",
+          "description": "Tag name used to disable monitoring at the resource level. Set to true if monitoring should be disabled."
+        },
+        "defaultValue": "MonitorDisable"
+      },
+      "DataMonitorDisableTagValues": {
+        "type": "Array",
+        "metadata": {
+          "displayName": "Data Monitoring disabled tag values(s)",
+          "description": "Tag value(s) used to disable monitoring at the resource level. Set to true if monitoring should be disabled."
+        },
+        "defaultValue": [
+          "true",
+          "Test",
+          "Dev",
+          "Sandbox"
+        ]
+      },
+      "SqlMI_AvgCpuPercent_AlertSeverity": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Severity",
+          "description": "Severity of the Alert"
+        },
+        "allowedValues": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "defaultValue": "2"
+      },
+      "SqlMI_AvgCpuPercent_AlertWindowSize": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Window Size",
+          "description": "Window size for the alert"
+        },
+        "allowedValues": [
+          "PT1M",
+          "PT5M",
+          "PT15M",
+          "PT30M",
+          "PT1H",
+          "PT6H",
+          "PT12H",
+          "P1D"
+        ],
+        "defaultValue": "PT5M"
+      },
+      "SqlMI_AvgCpuPercent_AlertEvaluationFrequency": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Evaluation Frequency",
+          "description": "Evaluation frequency for the alert"
+        },
+        "allowedValues": [
+          "PT1M",
+          "PT5M",
+          "PT15M",
+          "PT30M",
+          "PT1H"
+        ],
+        "defaultValue": "PT1M"
+      },
+      "SqlMI_AvgCpuPercent_AlertAutoMitigate": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Auto Mitigate",
+          "description": "Auto Mitigate for the alert"
+        },
+        "allowedValues": [
+          "true",
+          "false"
+        ],
+        "defaultValue": "true"
+      },
+      "SqlMI_AvgCpuPercent_AlertEnabled": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Alert State",
+          "description": "Alert state for the alert"
+        },
+        "allowedValues": [
+          "true",
+          "false"
+        ],
+        "defaultValue": "true"
+      },
+      "SqlMI_AvgCpuPercent_AlertThreshold": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Threshold",
+          "description": "Threshold for the alert"
+        },
+        "defaultValue": "80"
+      },
+      "SqlMI_AvgCpuPercent_AlertEffect": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Effect",
+          "description": "Effect of the policy"
+        },
+        "allowedValues": [
+          "deployIfNotExists",
+          "disabled"
+        ],
+        "defaultValue": "deployIfNotExists"
+      },
+      "SqlMI_StorageSpaceUsedMb_AlertSeverity": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Severity",
+          "description": "Severity of the Alert"
+        },
+        "allowedValues": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "defaultValue": "2"
+      },
+      "SqlMI_StorageSpaceUsedMb_AlertWindowSize": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Window Size",
+          "description": "Window size for the alert"
+        },
+        "allowedValues": [
+          "PT1M",
+          "PT5M",
+          "PT15M",
+          "PT30M",
+          "PT1H",
+          "PT6H",
+          "PT12H",
+          "P1D"
+        ],
+        "defaultValue": "PT5M"
+      },
+      "SqlMI_StorageSpaceUsedMb_AlertEvaluationFrequency": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Evaluation Frequency",
+          "description": "Evaluation frequency for the alert"
+        },
+        "allowedValues": [
+          "PT1M",
+          "PT5M",
+          "PT15M",
+          "PT30M",
+          "PT1H"
+        ],
+        "defaultValue": "PT1M"
+      },
+      "SqlMI_StorageSpaceUsedMb_AlertAutoMitigate": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Auto Mitigate",
+          "description": "Auto Mitigate for the alert"
+        },
+        "allowedValues": [
+          "true",
+          "false"
+        ],
+        "defaultValue": "true"
+      },
+      "SqlMI_StorageSpaceUsedMb_AlertEnabled": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Alert State",
+          "description": "Alert state for the alert"
+        },
+        "allowedValues": [
+          "true",
+          "false"
+        ],
+        "defaultValue": "true"
+      },
+      "SqlMI_StorageSpaceUsedMb_AlertThreshold": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Threshold",
+          "description": "Threshold for the alert"
+        },
+        "defaultValue": "80"
+      },
+      "SqlMI_StorageSpaceUsedMb_AlertEffect": {
+        "type": "String",
+        "metadata": {
+          "displayName": "Effect",
+          "description": "Effect of the policy"
+        },
+        "allowedValues": [
+          "deployIfNotExists",
+          "disabled"
+        ],
+        "defaultValue": "deployIfNotExists"
+      }
+    },
+    "policyDefinitions": [
+      {
+        "policyDefinitionReferenceId": "DATA_SqlMI_AvgCpuPercent",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/contoso/providers/Microsoft.Authorization/policyDefinitions/Deploy_SqlMI_AvgCpuPercent_Alert",
+        "parameters": {
+          "severity": {
+            "value": "[[parameters('SqlMI_AvgCpuPercent_AlertSeverity')]"
+          },
+          "windowSize": {
+            "value": "[[parameters('SqlMI_AvgCpuPercent_AlertWindowSize')]"
+          },
+          "evaluationFrequency": {
+            "value": "[[parameters('SqlMI_AvgCpuPercent_AlertEvaluationFrequency')]"
+          },
+          "effect": {
+            "value": "[[parameters('SqlMI_AvgCpuPercent_AlertEffect')]"
+          },
+          "enabled": {
+            "value": "[[parameters('SqlMI_AvgCpuPercent_AlertEnabled')]"
+          },
+          "MonitorDisableTagName": {
+            "value": "[[parameters('DATAMonitorDisableTagName')]"
+          },
+          "MonitorDisableTagValues": {
+            "value": "[[parameters('DATAMonitorDisableTagValues')]"
+          }
+        }
+      },
+      {
+        "policyDefinitionReferenceId": "DATA_SqlMI_StorageSpaceUsedMb",
+        "policyDefinitionId": "/providers/Microsoft.Management/managementGroups/contoso/providers/Microsoft.Authorization/policyDefinitions/Deploy_SqlMI_StorageSpaceUsedMb_Alert",
+        "parameters": {
+          "severity": {
+            "value": "[[parameters('SqlMI_StorageSpaceUsedMb_AlertSeverity')]"
+          },
+          "windowSize": {
+            "value": "[[parameters('SqlMI_StorageSpaceUsedMb_AlertWindowSize')]"
+          },
+          "evaluationFrequency": {
+            "value": "[[parameters('SqlMI_StorageSpaceUsedMb_AlertEvaluationFrequency')]"
+          },
+          "effect": {
+            "value": "[[parameters('SqlMI_StorageSpaceUsedMb_AlertEffect')]"
+          },
+          "enabled": {
+            "value": "[[parameters('SqlMI_StorageSpaceUsedMb_AlertEnabled')]"
+          },
+          "threshold": {
+            "value": "[[parameters('SqlMI_StorageSpaceUsedMb_AlertThreshold')]"
+          },
+          "MonitorDisableTagName": {
+            "value": "[[parameters('DATAMonitorDisableTagName')]"
+          },
+          "MonitorDisableTagValues": {
+            "value": "[[parameters('DATAMonitorDisableTagValues')]"
+          }
+        }
+      }
+    ],
+    "policyType": "Custom",
+    "policyDefinitionGroups": null
+  }
+}
