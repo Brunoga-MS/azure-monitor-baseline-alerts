@@ -11,10 +11,10 @@
 
 <#
     .NOTES
-    AUTHORS:  Arjen Huitema, Bruno Gabrielli
-    LASTEDIT: Nov 29th, 2024
+    AUTHORS:  Bruno Gabrielli
+    LASTEDIT: Apr 08th, 2026
 
-    - VERSION: 1.0 // Nov 29th, 2024
+    - VERSION: 1.0 // Apr 08th, 2026
       - Initial version of the script
 
     .DESCRIPTION
@@ -44,25 +44,15 @@
     Run the following commands to initiate remediation:
 
     ## Run the following command only if still using custom Service Health policy
-    .\patterns\alz\scripts\Start-AMBA-ALZ-Remediation.ps1 -managementGroupName $pseudoRootManagementGroup -policyName Alerting-ServiceHealth
-    ## Run the following command only if switched the new built-in Service Health policy
-    .\patterns\alz\scripts\Start-AMBA-ALZ-Remediation.ps1 -managementGroupName $pseudoRootManagementGroup -policyName Alerting-ResourceAndServiceHealth
+    .\patterns\data\scripts\Start-AMBA-DATA-Remediation.ps1 -managementGroupName $pseudoRootManagementGroup -policyName Alerting-ServiceHealth
 
-    .\patterns\alz\scripts\Start-AMBA-ALZ-Remediation.ps1 -managementGroupName $pseudoRootManagementGroup -policyName Notification-Assets
-    .\patterns\alz\scripts\Start-AMBA-ALZ-Remediation.ps1 -managementGroupName $platformManagementGroup -policyName Alerting-HybridVM
-    .\patterns\alz\scripts\Start-AMBA-ALZ-Remediation.ps1 -managementGroupName $platformManagementGroup -policyName Alerting-VM
-    .\patterns\alz\scripts\Start-AMBA-ALZ-Remediation.ps1 -managementGroupName $connectivityManagementGroup -policyName Alerting-Connectivity
-    .\patterns\alz\scripts\Start-AMBA-ALZ-Remediation.ps1 -managementGroupName $connectivityManagementGroup -policyName Alerting-Connectivity-2
-    .\patterns\alz\scripts\Start-AMBA-ALZ-Remediation.ps1 -managementGroupName $identityManagementGroup -policyName Alerting-Identity
-    .\patterns\alz\scripts\Start-AMBA-ALZ-Remediation.ps1 -managementGroupName $managementManagementGroup -policyName Alerting-Management
-    .\patterns\alz\scripts\Start-AMBA-ALZ-Remediation.ps1 -managementGroupName $LZManagementGroup -policyName Alerting-KeyManagement
-    .\patterns\alz\scripts\Start-AMBA-ALZ-Remediation.ps1 -managementGroupName $LZManagementGroup -policyName Alerting-LoadBalancing
-    .\patterns\alz\scripts\Start-AMBA-ALZ-Remediation.ps1 -managementGroupName $LZManagementGroup -policyName Alerting-NetworkChanges
-    .\patterns\alz\scripts\Start-AMBA-ALZ-Remediation.ps1 -managementGroupName $LZManagementGroup -policyName Alerting-RecoveryServices
-    .\patterns\alz\scripts\Start-AMBA-ALZ-Remediation.ps1 -managementGroupName $LZManagementGroup -policyName Alerting-Storage
-    .\patterns\alz\scripts\Start-AMBA-ALZ-Remediation.ps1 -managementGroupName $LZManagementGroup -policyName Alerting-HybridVM
-    .\patterns\alz\scripts\Start-AMBA-ALZ-Remediation.ps1 -managementGroupName $LZManagementGroup -policyName Alerting-VM
-    .\patterns\alz\scripts\Start-AMBA-ALZ-Remediation.ps1 -managementGroupName $LZManagementGroup -policyName Alerting-Web
+    ## Run the following command only if switched the new built-in Service Health policy
+    .\patterns\data\scripts\Start-AMBA-DATA-Remediation.ps1 -managementGroupName $pseudoRootManagementGroup -policyName Alerting-ResourceAndServiceHealth
+
+    .\patterns\data\scripts\Start-AMBA-ALZ-Remediation.ps1 -managementGroupName $pseudoRootManagementGroup -policyName Notification-Assets
+    .\patterns\data\scripts\Start-AMBA-ALZ-Remediation.ps1 -managementGroupName $LZManagementGroup -policyName Alerting-SQL
+    .\patterns\data\scripts\Start-AMBA-ALZ-Remediation.ps1 -managementGroupName $LZManagementGroup -policyName Alerting-OSSDB
+
 #>
 
 # The following SuppressMessageAttribute entries are used to suppress PSScriptAnalyzer tests against known exceptions as per:
@@ -150,7 +140,7 @@ function Get-PolicyType {
 
       # Getting parent initiative for unassigned individual policies
       If ($initiatives) {
-        $parentInitiative = $initiatives.value | Where-Object { ($_.properties.policyType -eq 'Custom') -and ($_.properties.metadata -like '*_deployed_by_amba*') } | Where-Object { $_.properties.policyDefinitions.policyDefinitionReferenceId -eq $policyname }
+        $parentInitiative = $initiatives.value | Where-Object { ($_.properties.policyType -eq 'Custom') -and ($_.properties.metadata -like '*_deployed_by_amba_data*') } | Where-Object { $_.properties.policyDefinitions.policyDefinitionReferenceId -eq $policyname }
 
         # Getting the assignment of the parent initiative
         If ($parentInitiative) {
