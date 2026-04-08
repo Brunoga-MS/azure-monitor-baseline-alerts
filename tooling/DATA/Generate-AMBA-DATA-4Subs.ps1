@@ -42,9 +42,9 @@
 $policyAssignmenstFilePath = ".\patterns\data\policyAssignments"
 $policyDefinitionsFilePath = ".\patterns\data\policyDefinitions"
 $policySetDefinitionsFilePath = ".\patterns\data\policySetDefinitions"
-$armTemplateFilePath = ".\patterns\data\alzArm.json"
-$parameterFilePath = ".\patterns\data\alzArm.param.json"
-$templateFilePath = ".\patterns\alz\templates"
+$armTemplateFilePath = ".\patterns\data\dataArm.json"
+$parameterFilePath = ".\patterns\data\dataArm.param.json"
+$templateFilePath = ".\patterns\data\templates"
 
 $dataForSubsFilesPath = ".\patterns\data4Subs\"
 $dataForSubsTemplateFileName = "dataArm4Subs.json"
@@ -52,7 +52,7 @@ $dataForSubsParamFileName = "dataArm4Subs.param.json"
 
 #region Copy templates
 copy-item -Path "$templateFilePath\resourceGroup.json" -Destination "$dataForSubsFilesPath\templates\resourceGroup.json" -force
-copy-item -Path "$templateFilePath\userAssignedManagedIdentity.json" -Destination "$dataForSubsFilesPath\templates\userAssignedManagedIdentity.json" -force
+#copy-item -Path "$templateFilePath\userAssignedManagedIdentity.json" -Destination "$dataForSubsFilesPath\templates\userAssignedManagedIdentity.json" -force
 #endregion
 
 #region Policy Assignments
