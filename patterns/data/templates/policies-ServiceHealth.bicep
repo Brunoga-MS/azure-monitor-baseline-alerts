@@ -39,7 +39,15 @@ var deploymentLocation = '"location": "${targetDeploymentLocationByCloudType[clo
 // To get a full list of Azure clouds, use the az cli command "az cloud list --output table"
 // We use loadTextContent instead of loadJsonContent  as this allows us to perform string replacement operations against the imported templates.
 var loadPolicyDefinitions = {
-  All: []
+  All: [
+    // Used in ServiceHealth Policy Set Definition
+    loadTextContent('../../../services/Resources/subscriptions/Deploy-ServiceHealth-ActionGroups.json')
+    loadTextContent('../../../services/Resources/subscriptions/Deploy-ActivityLog-ResourceHealth-UnHealthly-Alert.json')
+    loadTextContent('../../../services/Resources/subscriptions/Deploy-ActivityLog-ServiceHealth-Health.json')
+    loadTextContent('../../../services/Resources/subscriptions/Deploy-ActivityLog-ServiceHealth-Incident.json')
+    loadTextContent('../../../services/Resources/subscriptions/Deploy-ActivityLog-ServiceHealth-Maintenance.json')
+    loadTextContent('../../../services/Resources/subscriptions/Deploy-ActivityLog-ServiceHealth-Security.json')
+  ]
   AzureCloud: []
   AzureChinaCloud: []
   AzureUSGovernment: []
@@ -51,10 +59,7 @@ var loadPolicyDefinitions = {
 // Use string(loadJsonContent('../file.json')) when the JSON has more than 131072 characters
 var loadPolicySetDefinitions = {
   All: [
-    string(loadJsonContent('../policySetDefinitions/Deploy-Notification-Assets.json'))
-    string(loadJsonContent('../policySetDefinitions/Deploy-ResourceAndServiceHealth-Alerts.json'))
-    string(loadJsonContent('../policySetDefinitions/Deploy-Sql-Alerts.json'))
-    string(loadJsonContent('../policySetDefinitions/Deploy-OssDb-Alerts.json'))
+
   ]
   AzureCloud: []
   AzureChinaCloud: []

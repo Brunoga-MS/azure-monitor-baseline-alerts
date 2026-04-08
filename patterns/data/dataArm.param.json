@@ -17,16 +17,19 @@
     "enableAMBAOssDb": {
       "value": "Yes"
     },
+    "enableAMBAServiceHealth": {
+      "value": "Yes"
+    },
     "enableAMBANotificationAssets": {
       "value": "Yes"
     },
-    "DataMonitorResourceGroupName": {
+    "MonitorResourceGroupName": {
       "value": "rg-amba-monitoring-001"
     },
-    "DataMonitorResourceGroupLocation": {
+    "MonitorResourceGroupLocation": {
       "value": "eastus"
     },
-    "DataMonitorResourceGroupTags": {
+    "MonitorResourceGroupTags": {
       "value": {
         "_deployed_by_amba_data": true
       }
@@ -94,6 +97,33 @@
         },
         "OssDBAssignmentExcludedResources": {
           "value": []
+        }
+      }
+    },
+    "policyAssignmentParametersServiceHealth": {
+      "value": {
+        "ResHlthUnhealthyAlertState": {
+          "value": "true"
+        },
+        "ResHlthUnhealthyPolicyEffect": {
+          "value": "deployIfNotExists"
+        },
+        "ShaBuiltInEnableAlertRule": {
+          "value": "true"
+        },
+        "ShaBuiltInPolicyEffect": {
+          "value": "DeployIfNotExists"
+        },
+        "ShaBuiltInAlertRuleName": {
+          "value": "ServiceHealthSubscriptionAlertRule"
+        },
+        "ShaBuiltInEventTypes": {
+          "value": [
+            "Service Issues",
+            "Planned Maintenance",
+            "Health Advisories",
+            "Security Advisories"
+          ]
         }
       }
     },

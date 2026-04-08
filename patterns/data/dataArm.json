@@ -55,6 +55,17 @@
         "description": "Assign OSS DB initiative"
       }
     },
+    "enableAMBAServiceHealth": {
+      "type": "string",
+      "defaultValue": "Yes",
+      "allowedValues": [
+        "Yes",
+        "No"
+      ],
+      "metadata": {
+        "description": "Assign Service health initiative"
+      }
+    },
     "enableAMBANotificationAssets": {
       "type": "string",
       "defaultValue": "Yes",
@@ -206,6 +217,9 @@
         "notificationAssetsAssignmentExcludedResources": {
           "value": []
         },
+        "serviceHealthAssignmentExcludedResources": {
+          "value": []
+        },
         "SqlAssignmentExcludedResources": {
           "value": []
         },
@@ -261,6 +275,25 @@
         "value": "[parameters('DataMonitorDisableTagValues')]"
       }
     },
+    "shNotificationAssetParameters": {
+      "BYOActionGroup": {
+        "value": "[parameters('BYOActionGroup')]"
+      },
+      "DataMonitorArmRoleId": {
+        "value": "[parameters('DataMonitorArmRoleId')]"
+      },
+      "DataMonitorShaActionGroupResources": {
+        "value": {
+          "actionGroupEmail": "[parameters('DataMonitorActionGroupEmail')]",
+          "logicappResourceId": "[parameters('DataMonitorLogicappResourceId')]",
+          "logicappCallbackUrl": "[parameters('DataMonitorLogicappCallbackUrl')]",
+          "eventHubResourceId": "[parameters('DataMonitorEventHubResourceId')]",
+          "webhookServiceUri": "[parameters('DataMonitorWebhookServiceUri')]",
+          "functionResourceId": "[parameters('DataMonitorFunctionResourceId')]",
+          "functionTriggerUrl": "[parameters('DataMonitorFunctionTriggerUrl')]"
+        }
+      }
+    },
     "notificationAssetParameters": {
       "DataMonitorActionGroupEmail": {
         "value": "[parameters('DataMonitorActionGroupEmail')]"
@@ -302,21 +335,25 @@
       }
     },
     // Declaring the policy assignment parameters that will be used for all policy assignments
+    "policyAssignmentParametersServiceHealth": "[union(variables('policyAssignmentParametersCommon'), parameters('policyAssignmentParametersServiceHealth'), variables('shNotificationAssetParameters'))]",
     "policyAssignmentParametersNotificationAssets": "[union(variables('policyAssignmentParametersCommon'), variables('notificationAssetParameters'), variables('notificationAssetSeverityParameters'))]",
     "policyAssignmentParametersSql": "[union(variables('policyAssignmentParametersCommon'), parameters('policyAssignmentParametersSql'))]",
     "policyAssignmentParametersOssDB": "[union(variables('policyAssignmentParametersCommon'), parameters('policyAssignmentParametersOssDB'))]",
     // Declaring all required deployment uri's used for deployments of composite ARM templates for ESLZ
     "deploymentUris": {
+      "policyDefinitionsServiceHealth": "[uri(deployment().properties.templateLink.uri, 'policyDefinitions/policies-ServiceHealth.json')]",
       "policyDefinitionsNotificationAssets": "[uri(deployment().properties.templateLink.uri, 'policyDefinitions/policies-NotificationAssets.json')]",
       "policyDefinitionsSql": "[uri(deployment().properties.templateLink.uri, 'policyDefinitions/policies-Sql.json')]",
       "policyDefinitionsOssDB": "[uri(deployment().properties.templateLink.uri, 'policyDefinitions/policies-OssDB.json')]",
       "policySetDefinitions": "[uri(deployment().properties.templateLink.uri, 'policyDefinitions/policySets.json')]",
-      "DataMonitorNotificationAssetsInitiative": "[uri(deployment().properties.templateLink.uri, 'policyAssignments/DINE-NotificationAssetsAssignment.json')]",
+      "AMBAServiceHealthInitiative": "[uri(deployment().properties.templateLink.uri, 'policyAssignments/DINE-ResourceAndServiceHealthAssignment.json')]",
+      "AMBANotificationAssetsInitiative": "[uri(deployment().properties.templateLink.uri, 'policyAssignments/DINE-NotificationAssetsAssignment.json')]",
       "DataMonitorSqlInitiative": "[uri(deployment().properties.templateLink.uri, 'policyAssignments/DINE-SqlAssignment.json')]",
       "DataMonitorOssDBInitiative": "[uri(deployment().properties.templateLink.uri, 'policyAssignments/DINE-OssDBAssignment.json')]"
     },
     // Declaring PIDs
     "cuaid": "49be9f73-016c-4160-8725-7a31d447931c",
+    "cuaidServiceHealth": "4694b0a7-f235-4e70-92fe-92c2040e3c8e",
     "cuaidNotificationAssets": "4c6cd4c6-e0ab-4c09-8f29-55ba50ba7a98",
     "cuaidSql": "11c4d419-e961-4f64-b832-688a4d5b377e",
     "cuaidOssDB": "79c175ee-6e8f-40ec-8078-21af43a368e2",
@@ -326,13 +363,16 @@
     "deploymentNames": {
       "DataMonitorResourceGroupDeploymentName": "[take(concat('amba-rg', variables('deploymentSuffix')), 64)]",
       "policyDefinitionsNotificationAssetsDeploymentName": "[take(concat('amba-Policy-NotificationAssets', variables('deploymentSuffix')), 64)]",
+      "policyDefinitionsServiceHealthDeploymentName": "[take(concat('amba-Policy-ServiceHealth', variables('deploymentSuffix')), 64)]",
       "policyDefinitionsSqlDeploymentName": "[take(concat('amba-Policy-Sql', variables('deploymentSuffix')), 64)]",
       "policyDefinitionsOssDBDeploymentName": "[take(concat('amba-Policy-OssDB', variables('deploymentSuffix')), 64)]",
       "policySetDefinitionsDeploymentName": "[take(concat('amba-PolicySet', variables('deploymentSuffix')), 64)]",
-      "DataMonitorNotificationAssetsDeploymentName": "[take(concat('amba-Assignment-NotificationAssets', variables('deploymentSuffix')), 64)]",
+      "AMBANotificationAssetsDeploymentName": "[take(concat('amba-Assignment-NotificationAssets', variables('deploymentSuffix')), 64)]",
+      "AMBAServiceHealthDeploymentName": "[take(concat('amba-Assignment-ServiceHealth', variables('deploymentSuffix')), 64)]",
       "DataMonitorSqlDeploymentName": "[take(concat('amba-Assignment-Sql', variables('deploymentSuffix')), 64)]",
       "DataMonitorOssDBDeploymentName": "[take(concat('amba-Assignment-OssDB', variables('deploymentSuffix')), 64)]",
       "pidCuaDeploymentName": "[take(concat('amba-pid-', variables('cuaid'), '-' , uniqueString(deployment().location, parameters('enterpriseScaleCompanyPrefix'), parameters('currentDateTimeUtcNow'))), 64)]",
+      "pidCuaServiceHealthDeploymentName": "[take(concat('amba-pid-SH-', variables('cuaidServiceHealth'), '-' , uniqueString(deployment().location, parameters('enterpriseScaleCompanyPrefix'), parameters('currentDateTimeUtcNow'))), 64)]",
       "pidCuaNotificationAssetsDeploymentName": "[take(concat('amba-pid-Notification-', variables('cuaidNotificationAssets'), '-' , uniqueString(deployment().location, parameters('enterpriseScaleCompanyPrefix'), parameters('currentDateTimeUtcNow'))), 64)]",
       "pidCuaSqlDeploymentName": "[take(concat('amba-pid-Sql-', variables('cuaidSql'), '-' , uniqueString(deployment().location, parameters('enterpriseScaleCompanyPrefix'), parameters('currentDateTimeUtcNow'))), 64)]",
       "pidCuaOssDbDeploymentName": "[take(concat('amba-pid-OssDB-', variables('cuaidOssDB'), '-' , uniqueString(deployment().location, parameters('enterpriseScaleCompanyPrefix'), parameters('currentDateTimeUtcNow'))), 64)]",
@@ -406,6 +446,27 @@
         }
       }
     },
+    // ServiceHealth Policy Definitions
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2020-10-01",
+      "name": "[variables('deploymentNames').policyDefinitionsServiceHealthDeploymentName]",
+      "location": "[deployment().location]",
+      "scope": "[concat('Microsoft.Management/managementGroups/', parameters('enterpriseScaleCompanyPrefix'))]",
+      "dependsOn": [],
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "contentVersion": "1.0.0.0",
+          "uri": "[variables('deploymentUris').policyDefinitionsServiceHealth]"
+        },
+        "parameters": {
+          "topLevelManagementGroupPrefix": {
+            "value": "[parameters('enterpriseScaleCompanyPrefix')]"
+          }
+        }
+      }
+    },
     // Policy Set Definitions
     {
       "type": "Microsoft.Resources/deployments",
@@ -432,6 +493,36 @@
       }
     },
     // MARK: Assign Policies
+    // Assigning AMBA Service Health PolicySet to the pseudo root management group if condition is true
+    {
+      "condition": "[equals(parameters('enableAMBAServiceHealth'), 'Yes')]",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2020-10-01",
+      "name": "[variables('deploymentNames').AMBAServiceHealthDeploymentName]",
+      "scope": "[concat('Microsoft.Management/managementGroups/', parameters('enterpriseScaleCompanyPrefix'))]",
+      "dependsOn": [
+        "[variables('deploymentNames').policySetDefinitionsDeploymentName]"
+      ],
+      "location": "[deployment().location]",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "contentVersion": "1.0.0.0",
+          "uri": "[variables('deploymentUris').AMBAServiceHealthInitiative]"
+        },
+        "parameters": {
+          "topLevelManagementGroupPrefix": {
+            "value": "[parameters('enterpriseScaleCompanyPrefix')]"
+          },
+          "policyAssignmentParameters": {
+            "value": "[variables('policyAssignmentParametersServiceHealth')]"
+          },
+          "policyAssignmentExclusions": {
+            "value": "[parameters('policyAssignmentExclusionList').serviceHealthAssignmentExcludedResources.value]"
+          }
+        }
+      }
+    },
     // Assigning AMBA Notification Assets PolicySet to the pseudo root management group if condition is true
     {
       "condition": "[equals(parameters('enableAMBANotificationAssets'), 'Yes')]",
@@ -534,6 +625,22 @@
       "condition": "[equals(parameters('telemetryOptOut'), 'No')]",
       "apiVersion": "2020-06-01",
       "name": "[if(equals(parameters('deployAmbaDataPortalAccelerator'), 'No'),variables('deploymentNames').pidCuaDeploymentName, variables('deploymentNames').pidCuaAmbaDataAcceleratorDeploymentName)]",
+      "location": "[deployment().location]",
+      "type": "Microsoft.Resources/deployments",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": []
+        }
+      }
+    },
+    // Deploying service health PolicySet telemetry if not opted out
+    {
+      "condition": "[and(equals(parameters('telemetryOptOut'), 'No'), equals(parameters('enableAMBAServiceHealth'), 'Yes'))]",
+      "apiVersion": "2020-06-01",
+      "name": "[variables('deploymentNames').pidCuaServiceHealthDeploymentName]",
       "location": "[deployment().location]",
       "type": "Microsoft.Resources/deployments",
       "properties": {
