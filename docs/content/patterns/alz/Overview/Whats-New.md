@@ -1,11 +1,11 @@
 ---
 title: What's New
-geekdocCollapseSection: true
-weight: 09
+weight: 01
 ---
 
 ### In this page
 
+> [2026-03-05](#2026-03-05) </br>
 > [2025-10-01](#2025-10-01) </br>
 > [2025-07-02](#2025-07-02) </br>
 > [2025-06-03](#2025-06-03) </br>
@@ -26,6 +26,30 @@ For the latest updates, visit the [Releases](https://github.com/Azure/azure-moni
 To update your deployment with the latest release, refer to the [Update to new releases](../../HowTo/UpdateToNewReleases) guide.
 
 To see what we have been and are working on, refer to the [AMBA Public Roadmap](https://aka.ms/amba/roadmap/alz) filtered for the ALZ pattern.
+
+## 2026-03-05
+
+### New Features
+
+- Supportability of deployment at the subscription level to accommodate ***Cloud Solution Provider (CSP) or Azure Lighthouse*** scenarios where the Management Group visibility is forbidden and limited to single subscription only.
+- Portal accelerator experience available for deployment at subscription level.
+
+### Bug Fixes
+
+- Fixed [[#816](https://github.com/Azure/azure-monitor-baseline-alerts/pull/816)]: Empty tag tf
+- Fixed [[#802](https://github.com/Azure/azure-monitor-baseline-alerts/pull/802)]: Fix non-unique HTML IDs in Alert Deployment Tabs
+- Fixed [[#725](https://github.com/Azure/azure-monitor-baseline-alerts/issues/725)]: [General workload issue]: Remediation Script Not Update to New Naming
+- Fixed [[#724](https://github.com/Azure/azure-monitor-baseline-alerts/issues/724)]: [General workload issue]: Value Casing for ShaBuiltInPolicyEffect Mismatch
+
+### Documentation Updates
+
+- New documentation theme tallowing for a better readability and user experience.
+- Documentation update for customizing AMBA-ALZ policies in line with the new ***Cloud Solution Provider (CSP) or Azure Lighthouse*** scenarios.
+- Documentation update for TF modules description that were documented the wrong way around.
+
+### Tools
+
+- New conversion script called ***Generate-AMBA-ALZ-4Subs.ps1*** and located in the `tooling\ALZ folder`, to adapt the AMBA-ALZ version to work on ***Cloud Solution Provider (CSP) or Azure Lighthouse*** scenarios. This script allows to maintain a single source code (the AMBA-ALZ pattern targeted to Management Groups) and generates the necessary artifacts for the new scenario whic is subscription oriented.
 
 ## 2025-10-01
 
@@ -149,7 +173,7 @@ To see what we have been and are working on, refer to the [AMBA Public Roadmap](
 
 ### Bug Fixes
 
-- Resolved [[#530](https://github.com/Azure/azure-monitor-baseline-alerts/issues/530)]: [General workload issue]: deployment validation failed (Az Portal) when disabling both Hybrid VM and Azure VM options (MG Settings)
+- Resolved [[#530](https://github.com/Azure/azure-monitor-baseline-alerts/issues/530)]: [General workload issue]: deployment validation failed (Az Portal) when disabling both Arc-enabled server and Azure VM options (MG Settings)
 
 ### Documentation Updates
 
@@ -165,7 +189,7 @@ To see what we have been and are working on, refer to the [AMBA Public Roadmap](
 
 ### New Features
 
-- Exclusion of logical volumes from the following alerts for both ***Azure*** and ***Hybrid*** Virtual Machines:
+- Exclusion of logical volumes from the following alerts for both ***Azure Virtual Machines*** and ***Arc-enabled server*** :
   - Operating System Disk Free space
   - Operating System DiskRead latency
   - Operating System DiskWrite latency
@@ -226,7 +250,7 @@ To see what we have been and are working on, refer to the [AMBA Public Roadmap](
 
 ### New Features
 
-- Assignment of VM and Hybrid VM initiatives to Platform MG.
+- Assignment of Azure VM and Arc-enabled server initiatives to Platform MG.
 - Faster deployment thanks to both template and ARM engine improvements.
 
 ### Bug Fixes
@@ -237,7 +261,7 @@ To see what we have been and are working on, refer to the [AMBA Public Roadmap](
 
 - Improved navigation for the ALZ pattern content by restructuring the menu.
 - Improved spelling and grammar for the ALZ pattern content.
-- Updated the ***Introduction to deploying the AMBA-ALZ Pattern*** page with the new Platform Management Group assignment for both **VM initiative** and **Hybrid VM initiative**.
+- Updated the ***Introduction to deploying the AMBA-ALZ Pattern*** page with the new Platform Management Group assignment for both **Azure VM initiative** and **Arc-enabled server initiative**.
 - Updated broken links.
 
 ### Tools
@@ -255,7 +279,7 @@ To see what we have been and are working on, refer to the [AMBA Public Roadmap](
 
 ### Bug Fixes
 
-- Resolved [[#323](https://github.com/Azure/azure-monitor-baseline-alerts/pull/323)]: Ensured the -WhatIf parameter is honored by all script commands and fixed the hybrid disconnected alert bug.
+- Resolved [[#323](https://github.com/Azure/azure-monitor-baseline-alerts/pull/323)]: Ensured the -WhatIf parameter is honored by all script commands and fixed the Arc-enabled server disconnected alert bug.
 - Resolved [[#342](https://github.com/Azure/azure-monitor-baseline-alerts/pull/342)]: Fixed GitHub issue link and Management Subscription ID.
 - Resolved [[#346](https://github.com/Azure/azure-monitor-baseline-alerts/pull/346)]: Updated useCommonSchema to useCommonAlertSchema in Deploy_ServiceHealth_ActionGroups and Deploy_Suppression_AlertProcessing_Rule Policy Definitions.
 - Resolved [[#357](https://github.com/Azure/azure-monitor-baseline-alerts/pull/357)]: Fixed the ExpressRoute QoS remediation issue.
@@ -312,7 +336,7 @@ To see what we have been and are working on, refer to the [AMBA Public Roadmap](
 - Resolved [[#261](https://github.com/Azure/azure-monitor-baseline-alerts/issues/261)]: Corrected display name VMLowOSDisk(Write/Read)LatencyAlert to VMHighOSDisk(Write/Read)LatencyAlert.
 - Resolved [[#260](https://github.com/Azure/azure-monitor-baseline-alerts/issues/260)]: Added threshold parameter for ALZ alerts ALZ_WSFMemoryPercentage, ALZ_WSFCPUPercentage.
 - Fixed casing in metadata and policies.
-- Fixed default values for multiple parameters in VM and Hybrid initiatives.
+- Fixed default values for multiple parameters in Azure VM and Arc-enabled server initiatives.
 
 ### Documentation Updates
 
