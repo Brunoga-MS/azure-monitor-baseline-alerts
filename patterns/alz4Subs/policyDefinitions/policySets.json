@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.34.44.8038",
-      "templateHash": "8606867874371409229"
+      "templateHash": "17674075658057313157"
     }
   },
   "parameters": {
@@ -123,7 +123,7 @@
         "displayName": "Deploy Azure Monitor Baseline Alerts (AMBA-ALZ) for Azure Virtual Machines",
         "description": "This initiative deploys Azure Monitor Baseline Alerts (AMBA-ALZ) to monitor Azure Virtual Machines.",
         "metadata": {
-          "version": "1.4.0",
+          "version": "1.5.0",
           "category": "Monitoring",
           "source": "https://github.com/Azure/azure-monitor-baseline-alerts/",
           "alzCloudEnvironments": [
@@ -221,14 +221,13 @@
             "type": "string",
             "defaultValue": "PT6H",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
               "PT1H",
               "PT6H",
               "PT12H",
-              "P1D"
+              "PT24H"
             ],
             "metadata": {
               "displayName": "VM Heart Beat RG Window Size",
@@ -239,7 +238,6 @@
             "type": "string",
             "defaultValue": "PT5M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
@@ -359,14 +357,13 @@
             "type": "string",
             "defaultValue": "PT15M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
               "PT1H",
               "PT6H",
               "PT12H",
-              "P1D"
+              "PT24H"
             ],
             "metadata": {
               "displayName": "VM Network In Window Size",
@@ -377,7 +374,6 @@
             "type": "string",
             "defaultValue": "PT5M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
@@ -505,14 +501,13 @@
             "type": "string",
             "defaultValue": "PT15M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
               "PT1H",
               "PT6H",
               "PT12H",
-              "P1D"
+              "PT24H"
             ],
             "metadata": {
               "displayName": "VM Network Out Window Size",
@@ -523,7 +518,6 @@
             "type": "string",
             "defaultValue": "PT5M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
@@ -651,14 +645,13 @@
             "type": "string",
             "defaultValue": "PT15M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
               "PT1H",
               "PT6H",
               "PT12H",
-              "P1D"
+              "PT24H"
             ],
             "metadata": {
               "displayName": "VM OS Disk Read Latency Window Size",
@@ -669,7 +662,6 @@
             "type": "string",
             "defaultValue": "PT5M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
@@ -797,14 +789,13 @@
             "type": "string",
             "defaultValue": "PT15M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
               "PT1H",
               "PT6H",
               "PT12H",
-              "P1D"
+              "PT24H"
             ],
             "metadata": {
               "displayName": "VM OS Disk Write Latency Window Size",
@@ -815,7 +806,6 @@
             "type": "string",
             "defaultValue": "PT5M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
@@ -943,14 +933,13 @@
             "type": "string",
             "defaultValue": "PT15M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
               "PT1H",
               "PT6H",
               "PT12H",
-              "P1D"
+              "PT24H"
             ],
             "metadata": {
               "displayName": "VM OS Disk Space Window Size",
@@ -961,7 +950,6 @@
             "type": "string",
             "defaultValue": "PT5M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
@@ -1089,14 +1077,13 @@
             "type": "string",
             "defaultValue": "PT15M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
               "PT1H",
               "PT6H",
               "PT12H",
-              "P1D"
+              "PT24H"
             ],
             "metadata": {
               "displayName": "VM Percent CPU Window Size",
@@ -1107,7 +1094,6 @@
             "type": "string",
             "defaultValue": "PT5M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
@@ -1182,11 +1168,7 @@
             "type": "string",
             "defaultValue": "GreaterThan",
             "allowedValues": [
-              "Equals",
-              "GreaterThan",
-              "GreaterThanOrEqual",
-              "LessThan",
-              "LessThanOrEqual"
+              "GreaterThan"
             ],
             "metadata": {
               "displayName": "VM Percent CPU Operator",
@@ -1231,14 +1213,13 @@
             "type": "string",
             "defaultValue": "PT15M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
               "PT1H",
               "PT6H",
               "PT12H",
-              "P1D"
+              "PT24H"
             ],
             "metadata": {
               "displayName": "VM Percent Memory Window Size",
@@ -1249,7 +1230,6 @@
             "type": "string",
             "defaultValue": "PT5M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
@@ -1369,14 +1349,13 @@
             "type": "string",
             "defaultValue": "PT15M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
               "PT1H",
               "PT6H",
               "PT12H",
-              "P1D"
+              "PT24H"
             ],
             "metadata": {
               "displayName": "VM Data Disk Space Window Size",
@@ -1387,7 +1366,6 @@
             "type": "string",
             "defaultValue": "PT5M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
@@ -1515,14 +1493,13 @@
             "type": "string",
             "defaultValue": "PT15M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
               "PT1H",
               "PT6H",
               "PT12H",
-              "P1D"
+              "PT24H"
             ],
             "metadata": {
               "displayName": "VM Data Disk Read Latency Window Size",
@@ -1533,7 +1510,6 @@
             "type": "string",
             "defaultValue": "PT5M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
@@ -1661,14 +1637,13 @@
             "type": "string",
             "defaultValue": "PT15M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
               "PT1H",
               "PT6H",
               "PT12H",
-              "P1D"
+              "PT24H"
             ],
             "metadata": {
               "displayName": "VM Data Disk Write Latency Window Size",
@@ -1679,7 +1654,6 @@
             "type": "string",
             "defaultValue": "PT5M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
@@ -2520,7 +2494,7 @@
         "displayName": "Deploy Azure Monitor Baseline Alerts (AMBA-ALZ) for Arc-enabled servers",
         "description": "This initiative deploys Azure Monitor Baseline Alerts (AMBA-ALZ) to monitor Azure Arc-enabled servers.",
         "metadata": {
-          "version": "1.4.0",
+          "version": "1.5.0",
           "category": "Monitoring",
           "source": "https://github.com/Azure/azure-monitor-baseline-alerts/",
           "alzCloudEnvironments": [
@@ -2618,14 +2592,13 @@
             "type": "string",
             "defaultValue": "PT15M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
               "PT1H",
               "PT6H",
               "PT12H",
-              "P1D"
+              "PT24H"
             ],
             "metadata": {
               "displayName": "Hybrid VM Heart Beat RG Window Size",
@@ -2636,7 +2609,6 @@
             "type": "string",
             "defaultValue": "PT5M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
@@ -2756,14 +2728,13 @@
             "type": "string",
             "defaultValue": "PT15M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
               "PT1H",
               "PT6H",
               "PT12H",
-              "P1D"
+              "PT24H"
             ],
             "metadata": {
               "displayName": "Hybrid VM Network In Window Size",
@@ -2774,7 +2745,6 @@
             "type": "string",
             "defaultValue": "PT5M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
@@ -2902,14 +2872,13 @@
             "type": "string",
             "defaultValue": "PT15M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
               "PT1H",
               "PT6H",
               "PT12H",
-              "P1D"
+              "PT24H"
             ],
             "metadata": {
               "displayName": "Hybrid VM Network Out Window Size",
@@ -2920,7 +2889,6 @@
             "type": "string",
             "defaultValue": "PT5M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
@@ -3048,14 +3016,13 @@
             "type": "string",
             "defaultValue": "PT15M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
               "PT1H",
               "PT6H",
               "PT12H",
-              "P1D"
+              "PT24H"
             ],
             "metadata": {
               "displayName": "Hybrid VM OS Disk Read Latency Window Size",
@@ -3066,7 +3033,6 @@
             "type": "string",
             "defaultValue": "PT5M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
@@ -3194,14 +3160,13 @@
             "type": "string",
             "defaultValue": "PT15M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
               "PT1H",
               "PT6H",
               "PT12H",
-              "P1D"
+              "PT24H"
             ],
             "metadata": {
               "displayName": "Hybrid VM OS Disk Write Latency Window Size",
@@ -3212,7 +3177,6 @@
             "type": "string",
             "defaultValue": "PT5M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
@@ -3340,14 +3304,13 @@
             "type": "string",
             "defaultValue": "PT15M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
               "PT1H",
               "PT6H",
               "PT12H",
-              "P1D"
+              "PT24H"
             ],
             "metadata": {
               "displayName": "Hybrid VM OS Disk Space Window Size",
@@ -3358,7 +3321,6 @@
             "type": "string",
             "defaultValue": "PT5M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
@@ -3486,14 +3448,13 @@
             "type": "string",
             "defaultValue": "PT15M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
               "PT1H",
               "PT6H",
               "PT12H",
-              "P1D"
+              "PT24H"
             ],
             "metadata": {
               "displayName": "Hybrid VM Percent CPU Window Size",
@@ -3504,7 +3465,6 @@
             "type": "string",
             "defaultValue": "PT5M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
@@ -3624,14 +3584,13 @@
             "type": "string",
             "defaultValue": "PT15M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
               "PT1H",
               "PT6H",
               "PT12H",
-              "P1D"
+              "PT24H"
             ],
             "metadata": {
               "displayName": "Hybrid VM Percent Memory Window Size",
@@ -3642,7 +3601,6 @@
             "type": "string",
             "defaultValue": "PT5M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
@@ -3762,14 +3720,13 @@
             "type": "string",
             "defaultValue": "PT15M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
               "PT1H",
               "PT6H",
               "PT12H",
-              "P1D"
+              "PT24H"
             ],
             "metadata": {
               "displayName": "Hybrid VM Data Disk Space Window Size",
@@ -3780,7 +3737,6 @@
             "type": "string",
             "defaultValue": "PT5M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
@@ -3908,14 +3864,13 @@
             "type": "string",
             "defaultValue": "PT15M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
               "PT1H",
               "PT6H",
               "PT12H",
-              "P1D"
+              "PT24H"
             ],
             "metadata": {
               "displayName": "Hybrid VM Data Disk Read Latency Window Size",
@@ -3926,7 +3881,6 @@
             "type": "string",
             "defaultValue": "PT5M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
@@ -4054,14 +4008,13 @@
             "type": "string",
             "defaultValue": "PT15M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
               "PT1H",
               "PT6H",
               "PT12H",
-              "P1D"
+              "PT24H"
             ],
             "metadata": {
               "displayName": "Hybrid VM Data Disk Write Latency Window Size",
@@ -5969,7 +5922,7 @@
         "displayName": "Deploy Azure Monitor Baseline Alerts (AMBA-ALZ) for Service Health and Resource Health",
         "description": "This initiative deploys Azure Monitor Baseline Alerts (AMBA-ALZ) to monitor Service Health and Resource Health events such as Service issues, Planned maintenance, Health advisories, Security advisories, and Resource health.",
         "metadata": {
-          "version": "1.1.0",
+          "version": "1.2.0",
           "category": "Monitoring",
           "source": "https://github.com/Azure/azure-monitor-baseline-alerts/",
           "alzCloudEnvironments": [
@@ -6057,9 +6010,8 @@
             "type": "string",
             "defaultValue": "DeployIfNotExists",
             "allowedValues": [
-              "deployIfNotExists",
               "DeployIfNotExists",
-              "disabled",
+              "AuditIfNotExists",
               "Disabled"
             ],
             "metadata": {
@@ -7515,7 +7467,7 @@
         "displayName": "[Preview]: Deploy Azure Monitor Baseline Alerts (AMBA-ALZ) for Azure Virtual Machine Scale Set",
         "description": "This initiative deploys Azure Monitor Baseline Alerts (AMBA-ALZ) to monitor Azure Virtual Machine Scale Set.",
         "metadata": {
-          "version": "1.1.0-preview",
+          "version": "1.2.0-preview",
           "category": "Monitoring",
           "source": "https://github.com/Azure/azure-monitor-baseline-alerts/",
           "alzCloudEnvironments": [
@@ -7613,14 +7565,13 @@
             "type": "string",
             "defaultValue": "PT6H",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
               "PT1H",
               "PT6H",
               "PT12H",
-              "P1D"
+              "PT24H"
             ],
             "metadata": {
               "displayName": "VMSS Heart Beat RG Window Size",
@@ -7631,7 +7582,6 @@
             "type": "string",
             "defaultValue": "PT5M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
@@ -7751,14 +7701,13 @@
             "type": "string",
             "defaultValue": "PT15M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
               "PT1H",
               "PT6H",
               "PT12H",
-              "P1D"
+              "PT24H"
             ],
             "metadata": {
               "displayName": "VMSS Network In Window Size",
@@ -7769,7 +7718,6 @@
             "type": "string",
             "defaultValue": "PT5M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
@@ -7897,14 +7845,13 @@
             "type": "string",
             "defaultValue": "PT15M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
               "PT1H",
               "PT6H",
               "PT12H",
-              "P1D"
+              "PT24H"
             ],
             "metadata": {
               "displayName": "VMSS Network Out Window Size",
@@ -7915,7 +7862,6 @@
             "type": "string",
             "defaultValue": "PT5M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
@@ -8043,14 +7989,13 @@
             "type": "string",
             "defaultValue": "PT15M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
               "PT1H",
               "PT6H",
               "PT12H",
-              "P1D"
+              "PT24H"
             ],
             "metadata": {
               "displayName": "VMSS OS Disk Read Latency Window Size",
@@ -8061,7 +8006,6 @@
             "type": "string",
             "defaultValue": "PT5M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
@@ -8189,14 +8133,13 @@
             "type": "string",
             "defaultValue": "PT15M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
               "PT1H",
               "PT6H",
               "PT12H",
-              "P1D"
+              "PT24H"
             ],
             "metadata": {
               "displayName": "VMSS OS Disk Write Latency Window Size",
@@ -8207,7 +8150,6 @@
             "type": "string",
             "defaultValue": "PT5M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
@@ -8335,14 +8277,13 @@
             "type": "string",
             "defaultValue": "PT15M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
               "PT1H",
               "PT6H",
               "PT12H",
-              "P1D"
+              "PT24H"
             ],
             "metadata": {
               "displayName": "VMSS OS Disk Space Window Size",
@@ -8353,7 +8294,6 @@
             "type": "string",
             "defaultValue": "PT5M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
@@ -8481,14 +8421,13 @@
             "type": "string",
             "defaultValue": "PT15M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
               "PT1H",
               "PT6H",
               "PT12H",
-              "P1D"
+              "PT24H"
             ],
             "metadata": {
               "displayName": "VMSS Percent CPU Window Size",
@@ -8499,7 +8438,6 @@
             "type": "string",
             "defaultValue": "PT5M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
@@ -8574,11 +8512,7 @@
             "type": "string",
             "defaultValue": "GreaterThan",
             "allowedValues": [
-              "Equals",
-              "GreaterThan",
-              "GreaterThanOrEqual",
-              "LessThan",
-              "LessThanOrEqual"
+              "GreaterThan"
             ],
             "metadata": {
               "displayName": "VMSS Percent CPU Operator",
@@ -8623,14 +8557,13 @@
             "type": "string",
             "defaultValue": "PT15M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
               "PT1H",
               "PT6H",
               "PT12H",
-              "P1D"
+              "PT24H"
             ],
             "metadata": {
               "displayName": "VMSS Percent Memory Window Size",
@@ -8641,7 +8574,6 @@
             "type": "string",
             "defaultValue": "PT5M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
@@ -8761,14 +8693,13 @@
             "type": "string",
             "defaultValue": "PT15M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
               "PT1H",
               "PT6H",
               "PT12H",
-              "P1D"
+              "PT24H"
             ],
             "metadata": {
               "displayName": "VMSS Data Disk Space Window Size",
@@ -8779,7 +8710,6 @@
             "type": "string",
             "defaultValue": "PT5M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
@@ -8907,14 +8837,13 @@
             "type": "string",
             "defaultValue": "PT15M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
               "PT1H",
               "PT6H",
               "PT12H",
-              "P1D"
+              "PT24H"
             ],
             "metadata": {
               "displayName": "VMSS Data Disk Read Latency Window Size",
@@ -8925,7 +8854,6 @@
             "type": "string",
             "defaultValue": "PT5M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
@@ -9053,14 +8981,13 @@
             "type": "string",
             "defaultValue": "PT15M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
               "PT1H",
               "PT6H",
               "PT12H",
-              "P1D"
+              "PT24H"
             ],
             "metadata": {
               "displayName": "VMSS Data Disk Write Latency Window Size",
@@ -9071,7 +8998,6 @@
             "type": "string",
             "defaultValue": "PT5M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
@@ -10777,14 +10703,13 @@
             "type": "string",
             "defaultValue": "PT6H",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
               "PT1H",
               "PT6H",
               "PT12H",
-              "P1D"
+              "PT24H"
             ],
             "metadata": {
               "displayName": "VM Heart Beat RG Window Size",
@@ -10795,7 +10720,6 @@
             "type": "string",
             "defaultValue": "PT5M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
@@ -10907,14 +10831,13 @@
             "type": "string",
             "defaultValue": "PT15M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
               "PT1H",
               "PT6H",
               "PT12H",
-              "P1D"
+              "PT24H"
             ],
             "metadata": {
               "displayName": "VM Network In Window Size",
@@ -10925,7 +10848,6 @@
             "type": "string",
             "defaultValue": "PT5M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
@@ -11045,14 +10967,13 @@
             "type": "string",
             "defaultValue": "PT15M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
               "PT1H",
               "PT6H",
               "PT12H",
-              "P1D"
+              "PT24H"
             ],
             "metadata": {
               "displayName": "VM Network Out Window Size",
@@ -11063,7 +10984,6 @@
             "type": "string",
             "defaultValue": "PT5M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
@@ -11183,14 +11103,13 @@
             "type": "string",
             "defaultValue": "PT15M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
               "PT1H",
               "PT6H",
               "PT12H",
-              "P1D"
+              "PT24H"
             ],
             "metadata": {
               "displayName": "VM OS Disk Read Latency Window Size",
@@ -11201,7 +11120,6 @@
             "type": "string",
             "defaultValue": "PT5M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
@@ -11321,14 +11239,13 @@
             "type": "string",
             "defaultValue": "PT15M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
               "PT1H",
               "PT6H",
               "PT12H",
-              "P1D"
+              "PT24H"
             ],
             "metadata": {
               "displayName": "VM OS Disk Write Latency Window Size",
@@ -11339,7 +11256,6 @@
             "type": "string",
             "defaultValue": "PT5M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
@@ -11459,14 +11375,13 @@
             "type": "string",
             "defaultValue": "PT15M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
               "PT1H",
               "PT6H",
               "PT12H",
-              "P1D"
+              "PT24H"
             ],
             "metadata": {
               "displayName": "VM OS Disk Space Window Size",
@@ -11477,7 +11392,6 @@
             "type": "string",
             "defaultValue": "PT5M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
@@ -11597,14 +11511,13 @@
             "type": "string",
             "defaultValue": "PT15M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
               "PT1H",
               "PT6H",
               "PT12H",
-              "P1D"
+              "PT24H"
             ],
             "metadata": {
               "displayName": "VM Percent CPU Window Size",
@@ -11615,7 +11528,6 @@
             "type": "string",
             "defaultValue": "PT5M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
@@ -11727,14 +11639,13 @@
             "type": "string",
             "defaultValue": "PT15M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
               "PT1H",
               "PT6H",
               "PT12H",
-              "P1D"
+              "PT24H"
             ],
             "metadata": {
               "displayName": "VM Percent Memory Window Size",
@@ -11745,7 +11656,6 @@
             "type": "string",
             "defaultValue": "PT5M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
@@ -11849,14 +11759,13 @@
             "type": "string",
             "defaultValue": "PT15M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
               "PT1H",
               "PT6H",
               "PT12H",
-              "P1D"
+              "PT24H"
             ],
             "metadata": {
               "displayName": "VM Data Disk Space Window Size",
@@ -11867,7 +11776,6 @@
             "type": "string",
             "defaultValue": "PT5M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
@@ -11987,14 +11895,13 @@
             "type": "string",
             "defaultValue": "PT15M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
               "PT1H",
               "PT6H",
               "PT12H",
-              "P1D"
+              "PT24H"
             ],
             "metadata": {
               "displayName": "VM Data Disk Read Latency Window Size",
@@ -12005,7 +11912,6 @@
             "type": "string",
             "defaultValue": "PT5M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
@@ -12125,14 +12031,13 @@
             "type": "string",
             "defaultValue": "PT15M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
               "PT1H",
               "PT6H",
               "PT12H",
-              "P1D"
+              "PT24H"
             ],
             "metadata": {
               "displayName": "VM Data Disk Write Latency Window Size",
@@ -12143,7 +12048,6 @@
             "type": "string",
             "defaultValue": "PT5M",
             "allowedValues": [
-              "PT1M",
               "PT5M",
               "PT15M",
               "PT30M",
