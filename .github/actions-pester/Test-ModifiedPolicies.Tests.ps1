@@ -30,7 +30,7 @@ Describe 'UnitTest-ModifiedPolicies' {
 
   Context "Validate policy metadata" {
 
-    It "Check policy metadata version exists" -Skip:($ModifiedAddedFiles -ne $null) {
+    It "Check policy metadata version exists" -Skip:($ModifiedAddedFiles -eq $null) {
       $ModifiedAddedFiles | ForEach-Object {
 
         $PolicyJson = Get-Content -Path $_ -Raw | ConvertFrom-Json
@@ -42,7 +42,7 @@ Describe 'UnitTest-ModifiedPolicies' {
       }
     }
 
-    It "Check policy metadata version is greater than its previous version" -Skip:($ModifiedFiles -ne $null) {
+    It "Check policy metadata version is greater than its previous version" -Skip:($ModifiedFiles -eq $null) {
       $ModifiedFiles | ForEach-Object {
 
         $PolicyFile = Split-Path $_ -Leaf
@@ -83,7 +83,7 @@ Describe 'UnitTest-ModifiedPolicies' {
       }
     }
 
-    It "Check if policy version has been correctly incremented" -Skip:($ModifiedFiles -ne $null) {
+    It "Check if policy version has been correctly incremented" -Skip:($ModifiedFiles -eq $null) {
       $ModifiedFiles | ForEach-Object {
 
         $PolicyJson = Get-Content -Path $_ -Raw | ConvertFrom-Json
@@ -128,7 +128,7 @@ Describe 'UnitTest-ModifiedPolicies' {
       }
     }
 
-    It "Check deprecated policy contains all required metadata"  -Skip:($ModifiedAddedFiles -ne $null) {
+    It "Check deprecated policy contains all required metadata"  -Skip:($ModifiedFiles -eq $null) {
       $ModifiedAddedFiles | ForEach-Object {
 
         $PolicyJson = Get-Content -Path $_ -Raw | ConvertFrom-Json
@@ -150,7 +150,7 @@ Describe 'UnitTest-ModifiedPolicies' {
       }
     }
 
-    It "Check policy metadata category exists"  -Skip:($ModifiedAddedFiles -ne $null) {
+    It "Check policy metadata category exists"  -Skip:($ModifiedAddedFiles -eq $null) {
       $ModifiedAddedFiles | ForEach-Object {
 
         $PolicyJson = Get-Content -Path $_ -Raw | ConvertFrom-Json
@@ -162,7 +162,7 @@ Describe 'UnitTest-ModifiedPolicies' {
       }
     }
 
-    It "Check policy metadata source is set to azure-monitor-baseline-alerts repo"  -Skip:($ModifiedAddedFiles -ne $null) {
+    It "Check policy metadata source is set to azure-monitor-baseline-alerts repo"  -Skip:($ModifiedAddedFiles -eq $null) {
       $ModifiedAddedFiles | ForEach-Object {
 
         $PolicyJson = Get-Content -Path $_ -Raw | ConvertFrom-Json
@@ -175,7 +175,7 @@ Describe 'UnitTest-ModifiedPolicies' {
     }
 
     <# Commenting this block since ALZ env tag is not that relevant
-    It "Check policy metadata ALZ Environments are specified for Public, US Gov or China Clouds"  -Skip:($ModifiedAddedFiles -ne $null) {
+    It "Check policy metadata ALZ Environments are specified for Public, US Gov or China Clouds"  -Skip:($ModifiedAddedFiles -eq $null) {
       $ModifiedAddedFiles | ForEach-Object {
 
         $PolicyJson = Get-Content -Path $_ -Raw | ConvertFrom-Json
@@ -189,7 +189,7 @@ Describe 'UnitTest-ModifiedPolicies' {
     }#>
 
     <# Commenting this block since we use a different name for policy name and file name
-    It "Check policy metadata name matches policy filename"  -Skip:($ModifiedAddedFiles -ne $null) {
+    It "Check policy metadata name matches policy filename"  -Skip:($ModifiedAddedFiles -eq $null) {
       $ModifiedAddedFiles | ForEach-Object {
 
         $PolicyJson = Get-Content -Path $_ -Raw | ConvertFrom-Json
@@ -207,7 +207,7 @@ Describe 'UnitTest-ModifiedPolicies' {
   }
 
   Context "Validate policy parameters" {
-    It 'Check for policy parameters have default values'  -Skip:($ModifiedAddedFiles -ne $null) {
+    It 'Check for policy parameters have default values'  -Skip:($ModifiedAddedFiles -eq $null) {
       $ModifiedAddedFiles | ForEach-Object {
 
         $PolicyJson = Get-Content -Path $_ -Raw | ConvertFrom-Json
