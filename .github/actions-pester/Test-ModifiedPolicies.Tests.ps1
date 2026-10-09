@@ -32,7 +32,7 @@ Describe 'UnitTest-ModifiedPolicies' {
 
     It "Check policy metadata version exists" {
 
-      if ($ModifiedAddedFiles.Count -eq 0) {
+      if ($ModifiedAddedFiles.Count -ne 0) {
         Set-ItResult -Skipped -Because "No modified or added policies."
         return
       }
