@@ -23,6 +23,8 @@ function Get-PolicyFiles
         [String]$BaseBranch = "$($env:GITHUB_BASE_REF)"
     )
 
+# upstream/main HEAD
+
     $PolicyFiles = @(git diff --diff-filter=$DiffFilter --name-only origin/main $PRBranch -- $PolicyDir)
     $PolicySetsFiles = @(git diff --diff-filter=$DiffFilter --name-only origin/main $PRBranch -- $PolicySetDir)
 
