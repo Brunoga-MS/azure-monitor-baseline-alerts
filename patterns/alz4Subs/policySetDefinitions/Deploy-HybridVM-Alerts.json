@@ -102,7 +102,7 @@
       },
       "HybridVMHeartBeatRGWindowSize": {
         "type": "string",
-        "defaultValue": "PT15M",
+        "defaultValue": "PT6H",
         "allowedValues": [
           "PT5M",
           "PT15M",
@@ -754,7 +754,7 @@
       },
       "HybridVMOSDiskWriteLatencyThreshold": {
         "type": "string",
-        "defaultValue": "50",
+        "defaultValue": "30",
         "metadata": {
           "displayName": "Hybrid VM OS Disk Write Latency Threshold",
           "description": "Threshold for the alert"

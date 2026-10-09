@@ -181,7 +181,7 @@
       },
       "KVAvailabilityThreshold": {
         "type": "string",
-        "defaultValue": "20",
+        "defaultValue": "90",
         "metadata": {
           "displayName": "Key Vault Availability Threshold",
           "description": "Threshold for the alert"
@@ -665,7 +665,7 @@
       },
       "PIPVIPAvailabilityThreshold": {
         "type": "string",
-        "defaultValue": "1",
+        "defaultValue": "90",
         "metadata": {
           "displayName": "PIP VIP Availability Threshold",
           "description": "Threshold for the alert"
@@ -830,7 +830,7 @@
       },
       "VNETDDOSAttackThreshold": {
         "type": "string",
-        "defaultValue": "1",
+        "defaultValue": "0",
         "metadata": {
           "displayName": "VNET DDoS Attack Threshold",
           "description": "Threshold for the alert"

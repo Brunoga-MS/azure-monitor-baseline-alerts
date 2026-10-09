@@ -160,7 +160,7 @@
           "displayName": "Auto Resolve",
           "description": "Auto Resolve time for the alert in ISO 8601 format"
         },
-        "defaultValue": "true"
+        "defaultValue": "00:10:00"
       },
       "enabled": {
         "type": "String",
